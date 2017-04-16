@@ -110,7 +110,7 @@ sds <- function(value, age, sex, item, ref, type = "SDS", male = "male", female 
         as.data.frame(lapply(df, function(param) stats::approx(df$age, param, xout = age)$y))})
     res <- numeric()
     for(i in 1:length(value)) {
-        res[i] <- eval(parse(text = paste0("stats::p",dists[[sex[i]]],"o(",value[i],",",
+        res[i] <- eval(parse(text = paste0("stats::p",dists[[sex[i]]],"(",value[i],",",
                                            paste(paste(names(par.appr[[sex[i]]])[-1],"=", par.appr[[sex[i]]][i,-1]), collapse = ","),
                                            ")")))
     }
