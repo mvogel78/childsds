@@ -14,9 +14,10 @@
 ##' or, if stacked, as data frame with four columns: age, sex, variable, value
 ##' @author Mandy Vogel
 ##' @export
-make_percentile_tab <- function(refs, item, perc = c(1,5,50,95,99), stack = F, sex, age){
+make_percentile_tab <- function(refs, item, perc = c(2.5,5,50,95,97.5), stack = F, sex, age){
     reftabs <- refs@refs[[item]]@params
-    nam <- sprintf("perc_%02d",perc)
+    nam <- paste(sprintf("perc_%02d",floor(perc)),
+                 gsub("0.","", perc-floor(perc)), sep = "_")
     dists <- unlist(refs@refs[[item]]@dist)
     perc <- perc/100
     sexes <- c(male = "male", female = "female")
