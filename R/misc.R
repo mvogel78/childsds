@@ -43,3 +43,44 @@ make_percentile_tab <- function(refs, item, perc = c(2.5,5,50,95,97.5), stack = 
         print("For stacking the package reshape2 is required")
     return(dplyr::select(res, sex, age, dplyr::everything()))
     }
+
+
+
+calc_confints <- function(lms.list, perc = c(2.5,5,50,95,97.5), level = 0.95, type = c("point")){
+    dist <- "BCPE"
+    nam <- paste(sprintf("perc_%02d",floor(perc)),
+                 gsub("0.","", perc-floor(perc)), sep = "_") 
+    perc <- perc/100
+    sexes <- names(lms.list)
+    lapply(sexes, function(sex){
+        res.l <- list()
+        for(i in 1:length(lms.list[[sex]])){
+            sex.df <- lms.list[[sex]][[i]]
+            perc.values <-  lapply(perc, function(p, sex.df){
+                eval(parse(
+                    text = paste0("gamlss.dist::q",dist,"(",p,",",
+                                  paste(
+                                      paste0(names(sex.df)[-which(names(sex.df) == "age")],
+                                             "=sex.df$",
+                                             names(sex.df)[-which(names(sex.df) == "age")]) ,
+                                      collapse = ","),
+                                  ")")))}, sex.df = sex.df)
+            names(perc.values) <- nam
+            perc.values$age <- sex.df$age
+            perc.values$sex <- sex
+            res.l[[length(res.l) + 1]] <- as.data.frame(perc.values, stringsAsFactors = F)                
+        }
+        confenv <- lapply(nam, function(perc){
+            pm <- sapply(res.l, function(xx, perc){
+                xx[,perc]
+            }, perc = perc)
+            pm <- as.data.frame(t(envelope(mat = t(pm))[[type]]))
+            names(pm) <- c("upper","lower")
+            pm
+        })
+        names(confenv) <- nam
+        confenv
+    })
+}
+
+ 
