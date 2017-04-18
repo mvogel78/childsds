@@ -132,10 +132,9 @@ fit_gamlss <- function(data, age.min = 0.25, age.max = 18, age.int = 1/12, dist 
 ##' @export
 one_iteration <- function(data.list, prop.fam = 0.75, prop.subject = 1, age.min = 0, age.max = 18, age.int = 1/12,
                           dist = "BCCGo", sigma.df = 3, nu.df = 2, mu.df = 4, tau.df = 2){
-    if(sum(is.na(data.list[[1]]$group)) > 0) print("no grouping variable is given. Therefore, no grouping will be done.")
     tmp.l <- lapply(data.list, select_fams, prop = prop.fam)
     tmp.l <- lapply(tmp.l, select_meas, prop = prop.subject)
-    lapply(tmp.l, fit_gamlss, dist = dist, sigma.df = sigma.df, nu.df = nu.df, mu.df = mu.df, tau.df = tau.df )
+    lapply(tmp.l, fit_gamlss, dist = dist, sigma.df = sigma.df, nu.df = nu.df, mu.df = mu.df, tau.df = tau.df, age.min = age.min, age.max = age.max )
 }
 
 ##' Do lms iterations 
@@ -150,6 +149,15 @@ one_iteration <- function(data.list, prop.fam = 0.75, prop.subject = 1, age.min 
 ##' @export
 do_iterations <- function(data.list, n = 10, prop.fam = 0.75, prop.subject = 1, age.min = 0, age.max = 18, age.int = 1/12,
                           dist = "BCCGo", mu.df = 4, sigma.df = 3, nu.df = 2, tau.df = 2){
+    range.age <- range(unlist(lapply(data.list, function(df) df$age)))
+    if(age.min < range.age[1]) {
+        age.min <- range.age[1]
+        print("requested age.min is smaller than max age in the data. set age.min to min(age).")}
+    if(age.max < range.age[2]){
+        age.max <- range.age[2]
+        print("requested age.max is greater than age range in data. set age.max to max(age).")
+    } 
+    if(sum(is.na(data.list[[1]]$group)) > 0) print("no grouping variable is given. Therefore, no grouping will be done.")
     sexes <- names(data.list)
     res <- list()
     for(i in 1:n){
@@ -159,7 +167,9 @@ do_iterations <- function(data.list, n = 10, prop.fam = 0.75, prop.subject = 1, 
                                                 sigma.df = sigma.df,
                                                 nu.df = nu.df,
                                                 tau.df = tau.df,
-                                                prop.fam = prop.fam)
+                                                prop.fam = prop.fam,
+                                                age.min = age.min,
+                                                age.max = age.max)
     }
     lms <- lapply(sexes, function(sex) {
         lms <- lapply(res, function(x) x[[sex]]$lms)
