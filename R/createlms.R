@@ -207,3 +207,55 @@ aggregate_lms <- function(lms.list){
     lms.agg
 }
 
+
+##' Calculate confidence intervals
+##'
+##' The function takes a lms list as returned by \code{\link{do_iterations}} and
+##' calculates the confidence bands for a given set of percentiles using
+##' \code{\link[boot]{envelope}} from the boot package 
+##' @title Calculate confidence intervals
+##' @param lms.list lms part of the returned list of \code{\link{do_iterations}}
+##' @param perc percentiles for which the confidence bands are calculated
+##' @param level confidence level
+##' @param type for now only point is a valid value
+##' @return list containing the respective confidence envelopes
+##' @author mandy
+##' @export
+calc_confints <- function(lms.list, perc = c(2.5,5,50,95,97.5), level = 0.95, type = c("point")){
+    dist <- "BCPE"
+    nam <- paste(sprintf("perc_%02d",floor(perc)),
+                 gsub("0.","", perc-floor(perc)), sep = "_") 
+    perc <- perc/100
+    sexes <- names(lms.list)
+    lapply(sexes, function(sex){
+        res.l <- list()
+        for(i in 1:length(lms.list[[sex]])){
+            sex.df <- lms.list[[sex]][[i]]
+            perc.values <-  lapply(perc, function(p, sex.df){
+                eval(parse(
+                    text = paste0("gamlss.dist::q",dist,"(",p,",",
+                                  paste(
+                                      paste0(names(sex.df)[-which(names(sex.df) == "age")],
+                                             "=sex.df$",
+                                             names(sex.df)[-which(names(sex.df) == "age")]) ,
+                                      collapse = ","),
+                                  ")")))}, sex.df = sex.df)
+            names(perc.values) <- nam
+            perc.values$age <- sex.df$age
+            perc.values$sex <- sex
+            res.l[[length(res.l) + 1]] <- as.data.frame(perc.values, stringsAsFactors = F)                
+        }
+        confenv <- lapply(nam, function(perc){
+            pm <- sapply(res.l, function(xx, perc){
+                xx[,perc]
+            }, perc = perc)
+            pm <- as.data.frame(t(boot::envelope(mat = t(pm))[[type]]))
+            names(pm) <- c("upper","lower")
+            pm
+        })
+        names(confenv) <- nam
+        confenv
+    })
+}
+
+ 
