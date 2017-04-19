@@ -127,12 +127,16 @@ sds <- function(value, age, sex, item, ref, type = "SDS", male = "male", female 
     refs <- ref@refs[[item]]@params
     dists <- ref@refs[[item]]@dist
     par.appr <- lapply(refs, function(df){
-        as.data.frame(lapply(df, function(param) stats::approx(df$age, param, xout = age)$y))})
+        as.data.frame(lapply(df, function(param) stats::approx(df$age, param, xout = age, rule = 1)$y))})
     res <- numeric()
     for(i in 1:length(value)) {
+        if(is.na(value[i]) | any(is.na(unlist(par.appr[[sex[i]]][i,-1]))) ){
+            res[i] <- NA
+        } else{
         res[i] <- eval(parse(text = paste0("gamlss.dist::p",dists[[sex[i]]],"(",value[i],",",
                                            paste(paste(names(par.appr[[sex[i]]])[-1],"=", par.appr[[sex[i]]][i,-1]), collapse = ","),
                                            ")")))
+        }
     }
     if(type == "SDS") return(stats::qnorm(res))
     return(round(res * 100, 2))
