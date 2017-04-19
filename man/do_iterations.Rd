@@ -51,4 +51,3 @@ given number of iterations
 \author{
 Mandy Vogel
 }
-

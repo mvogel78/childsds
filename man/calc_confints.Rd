@@ -30,4 +30,3 @@ calculates the confidence bands for a given set of percentiles using
 \author{
 mandy
 }
-

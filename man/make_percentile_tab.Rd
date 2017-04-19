@@ -35,4 +35,3 @@ percentiles
 \author{
 Mandy Vogel
 }
-

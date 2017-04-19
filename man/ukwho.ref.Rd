@@ -15,4 +15,3 @@ ukwho.ref
 LMS Parameters for UK-WHO growth charts for height,
 weight, bmi, head circumference
 }
-

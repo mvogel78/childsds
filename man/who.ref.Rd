@@ -17,4 +17,3 @@ LMS Parameters for UK-WHO growth charts for height, weight, bmi,
 head circumference,arm mid upper arm circumference, subscapular
 and triceps skinfold, weight for height
 }
-

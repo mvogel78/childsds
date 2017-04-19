@@ -17,4 +17,3 @@ LMS Parameters for German reference data (Kromeyer Hauschild, 2001)
 for height, weight, bmi, and waist circumference, including preterm
 correction (Voigt)
 }
-

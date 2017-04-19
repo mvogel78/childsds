@@ -29,4 +29,3 @@ function is called inside \code{\link{do_iterations}} and may not called directl
 \author{
 Mandy Vogel
 }
-

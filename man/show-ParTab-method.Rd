@@ -22,4 +22,3 @@ show method for ParTab
 \author{
 Mandy Vogel
 }
-

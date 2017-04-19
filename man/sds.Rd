@@ -58,4 +58,3 @@ anthro$bmi_perc <- sds(anthro$bmi,
 \author{
 Mandy Vogel
 }
-
