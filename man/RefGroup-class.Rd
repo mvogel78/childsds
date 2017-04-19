@@ -19,7 +19,6 @@ independent variable age, and the parameter values for both genders}
 
 \item{\code{info}}{additional infos regarding the references}
 }}
-
 \examples{
 data(kiggs.ref)
 print(kiggs.ref)
@@ -31,3 +30,4 @@ print(who.ref)
 \author{
 Mandy Vogel
 }
+

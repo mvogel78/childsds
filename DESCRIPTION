@@ -2,10 +2,16 @@ Package: childsds
 Title: Data and Methods Around Reference Values in Pediatrics
 Version: 0.6.1
 Authors@R: person("Mandy", "Vogel", email = "mandy.vogel@googlemail.com", role = c("aut", "cre"))
-Description: Calculation of standard deviation scores adduced from different growth standards (WHO, UK, German). Therefore, the calculation for SDS-values for different measures like BMI, weight, height, head circumference, different ratios, etc. are easy to carry out. Also, references for laboratory values in children are available: serum lipids, iron-related blood parameters. In the new version, there are also functions combining the gamlss lms() function with resampling methods for using with repeated measurements and family dependencies.
+Description: Calculation of standard deviation scores adduced from different
+    growth standards (WHO, UK, German). Therefore, the calculation for SDS-values
+    for different measures like BMI, weight, height, head circumference, different
+    ratios, etc. are easy to carry out. Also, references for laboratory values in
+    children are available: serum lipids, iron-related blood parameters. In the
+    new version, there are also functions combining the gamlss lms() function with
+    resampling methods for using with repeated measurements and family dependencies.
 Depends:
     R (>= 3.2.3)
-Imports:    
+Imports:
     gamlss,
     gamlss.dist,
     dplyr,
@@ -18,4 +24,4 @@ Suggests:
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 5.0.1

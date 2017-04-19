@@ -4,14 +4,17 @@
 \alias{do_iterations}
 \title{do lms iterations}
 \usage{
-do_iterations(data.list, n = 10, prop.fam = 0.75, prop.subject = 1,
-  age.min = 0, age.max = 18, age.int = 1/12, dist = "BCCGo",
-  mu.df = 4, sigma.df = 3, nu.df = 2, tau.df = 2)
+do_iterations(data.list, n = 10, max.it = 1000, prop.fam = 0.75,
+  prop.subject = 1, age.min = 0, age.max = 18, age.int = 1/12,
+  dist = "BCCGo", mu.df = 4, sigma.df = 3, nu.df = 2, tau.df = 2,
+  verbose = F)
 }
 \arguments{
 \item{data.list}{list of dataframes as returned by prepare_data}
 
-\item{n}{number of iterations}
+\item{n}{number of desired fits}
+
+\item{max.it}{maximum number of iterations that will be run}
 
 \item{prop.fam}{proportion of families to be sampled}
 
@@ -32,6 +35,8 @@ do_iterations(data.list, n = 10, prop.fam = 0.75, prop.subject = 1,
 \item{nu.df}{degree of freedem skewness parameter}
 
 \item{tau.df}{degree of freedem kurtosis parameter}
+
+\item{verbose}{whether or not information about sampling will be printed during while iterate}
 }
 \value{
 list of lists for models and fitted parameters
@@ -46,3 +51,4 @@ given number of iterations
 \author{
 Mandy Vogel
 }
+

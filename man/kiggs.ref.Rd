@@ -17,3 +17,4 @@ LMS Parameters for German reference data (KiGGS, 2003-2006)
 for height, weight, bmi, hip, whr, bodyfat, skinfold sum, triceps
 skinfold, and waist circumference
 }
+

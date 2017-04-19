@@ -29,3 +29,4 @@ the function is called inside \code{\link{do_iterations}} and may not called dir
 \author{
 Mandy Vogel
 }
+
