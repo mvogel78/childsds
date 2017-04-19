@@ -4,8 +4,8 @@
 \alias{make_percentile_tab}
 \title{calculate raw values}
 \usage{
-make_percentile_tab(refs, item, perc = c(1, 5, 50, 95, 99), stack = F, sex,
-  age)
+make_percentile_tab(refs, item, perc = c(2.5, 5, 50, 95, 97.5), stack = F,
+  sex, age)
 }
 \arguments{
 \item{refs}{Refgroup object}
