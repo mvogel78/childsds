@@ -165,7 +165,9 @@ do_iterations <- function(data.list, n = 10, max.it = 1000, prop.fam = 0.75, pro
     sexes <- names(data.list)
     res <- list()
     i <- 1
-    while(i <= max.it & length(res) < n ){
+    counter <- as.data.frame(t(numeric(length(sexes))))
+    names(counter) <- sexes
+    while(i <= max.it & min(counter[1,]) < n ){
         tmp.res <- one_iteration(data.list = data.list,
                                  dist = dist,
                                  mu.df = mu.df,
@@ -176,8 +178,12 @@ do_iterations <- function(data.list, n = 10, max.it = 1000, prop.fam = 0.75, pro
                                  age.min = age.min,
                                  age.max = age.max,
                                  verbose = verbose)
-        if(!is.null(tmp.res)) res[[length(res) + 1]] <- tmp.res 
-        print(paste(i,"iterations done - fitted:",length(res)))
+        fit_succ <- as.data.frame(lapply(tmp.res, function(x) !is.null(x)))
+        counter <- as.data.frame(t(colSums(dplyr::bind_rows(counter,fit_succ))))
+        print(fit_succ)
+        print(counter)         
+        res[[length(res) + 1]] <- tmp.res
+        print(paste(i,"iterations done."))
         i <- i + 1 
     }
     lms <- lapply(sexes, function(sex) {
