@@ -108,7 +108,13 @@ fit_gamlss <- function(data, age.min = 0.25, age.max = 18, age.int = 1/12, dist 
                        mu.df = 4,sigma.df = 3, nu.df = 2, tau.df = 2, value){
     tr.obj <- try(mm <- gamlss::lms(value, age, data = data[,-grep("group",names(data))],
                             families = dist,method.pb = "ML", k = 2,trace = F,
-                            sigma.df = sigma.df, nu.df = nu.df, mu.df = mu.df, tau.df = tau.df))
+                            mu.df = mu.df, sigma.df = sigma.df, nu.df = nu.df, tau.df = tau.df))
+    if("try-error" %in% class(tr.obj) ){
+        tr.obj <- try(mm <- gamlss::lms(value, age, data = data[,-grep("group",names(data))],
+                                        families = dist,method.pb = "ML", k = 2,trace = F,
+                                        mu.df = mu.df, sigma.df = sigma.df, nu.df = 1, tau.df = 1)) 
+    }
+    if(!exists("mm") || is.null(mm)) invisible(return(NULL)) 
     age <- seq(age.min, age.max, by = age.int)
     if (mm$family[1] == dist & !("try-error" %in% class(tr.obj))) {
         lms <- as.data.frame(gamlss::predictAll(mm,
