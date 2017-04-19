@@ -23,7 +23,7 @@ make_percentile_tab <- function(refs, item, perc = c(2.5,5,50,95,97.5), stack = 
     sexes <- c(male = "male", female = "female")
     pertab <- lapply(sexes, function(sex){
         perc.values <- lapply(perc, function(p){
-            eval(parse(text = paste0("gamlss::q",dists[sex],"(",p,",",
+            eval(parse(text = paste0("gamlss.dist::q",dists[sex],"(",p,",",
                                      paste(
                                          paste0(names(reftabs[[sex]])[-1],
                                                 "=reftabs[[\"",sex,"\"]]$",

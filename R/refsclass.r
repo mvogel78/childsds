@@ -97,7 +97,27 @@ setMethod("show","ParTab",
 ##' @param male coding of sex for male
 ##' @param female coding of sex for male
 ##' @return vector containing SDS or percentile values
+##' @examples
+##' anthro <- data.frame(age = c(11.61,12.49,9.5,10.42,8.42,10.75,9.57,10.48),
+##'                      height = c(148.2,154.4,141.6,145.3,146,140.9,145.5,150),
+##'                      sex = sample(c("male","female"), size = 8, replace = TRUE),
+##'                      weight = c(69.5,72.65,47.3,51.6,45.6,48.9,53.5,58.5))
+##' anthro$height_sds <- sds(anthro$height,
+##'                          age = anthro$age,
+##'                          sex = anthro$sex, male = "male", female = "female",
+##'                          ref = kro.ref,
+##'                          item = "height",
+##'                          type = "SDS")
+##' 
+##' anthro$bmi <- anthro$weight/(anthro$height**2) * 10000
+##' anthro$bmi_perc <- sds(anthro$bmi,
+##'                        age = anthro$age,
+##'                        sex = anthro$sex, male = "male", female = "female",
+##'                        ref = kro.ref,
+##'                        item = "bmi",
+##'                        type = "perc")
 ##' @author Mandy Vogel
+##' @export
 sds <- function(value, age, sex, item, ref, type = "SDS", male = "male", female = "female"){
     if(!(length(value) == length(age) & length(value) == length(sex))){
         print("value, age, and sex must be of the same length")
@@ -117,5 +137,4 @@ sds <- function(value, age, sex, item, ref, type = "SDS", male = "male", female 
     if(type == "SDS") return(stats::qnorm(res))
     return(round(res * 100, 2))
 }
-
 

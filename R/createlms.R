@@ -49,12 +49,13 @@ prepare_data <- function(data, group = NULL, subject = "SIC", sex = NULL, value 
 ##' @param data dataframe as returned by prepare data
 ##' @param prop proportion of families to be sampled
 ##' @param group name of the group variable (character) if not "group", ignored
+##' @param verbose if TRUE information about sample size is printed out
 ##' @return dataframe containing only prop.fam percent the families in data
 ##' @author Mandy Vogel
 ##' @export
-select_fams <- function(data, prop = 0.75, group){
+select_fams <- function(data, prop = 0.75, group, verbose = F){
     if(sum(is.na(data$group)) > 0) {
-        print("Missing group variable. Returning original data set.")
+        if(verbose) print("select_fams: Missings in group variable. Returning original data set.")
         return(data)}
     weights <- dplyr::group_by(data, group) %>% dplyr::summarise(n=dplyr::n(), wgt = 1-1/(dplyr::n()+1))
     weights <- weights$group[sample(1:nrow(weights),size = (nrow(weights) * prop), prob = weights$wgt)]
@@ -105,7 +106,7 @@ select_meas <- function(data, subject = "subject", prop = 1, verbose = F){
 ##' @author Mandy Vogel
 fit_gamlss <- function(data, age.min = 0.25, age.max = 18, age.int = 1/12, dist = "BCCGo",
                        mu.df = 4,sigma.df = 3, nu.df = 2, tau.df = 2, value){
-    tr.obj <- try(mm <- lms(value, age, data = data[,-grep("group",names(data))],
+    tr.obj <- try(mm <- gamlss::lms(value, age, data = data[,-grep("group",names(data))],
                             families = dist,method.pb = "ML", k = 2,trace = F,
                             sigma.df = sigma.df, nu.df = nu.df, mu.df = mu.df, tau.df = tau.df))
     age <- seq(age.min, age.max, by = age.int)
@@ -126,14 +127,15 @@ fit_gamlss <- function(data, age.min = 0.25, age.max = 18, age.int = 1/12, dist 
 ##' @param data.list list of dataframes as returned by prepare_data
 ##' @param prop.fam proportion of families to be sampled
 ##' @param prop.subject proportion of subject to be sampled
+##' @param verbose whether or not information about sampling will be printed during while iterate 
 ##' @inheritParams fit_gamlss
 ##' @return list of lists each containing a dataframe of the fitted lms parameter at the given age points and the fitted model
 ##' @author Mandy Vogel
 ##' @export
 one_iteration <- function(data.list, prop.fam = 0.75, prop.subject = 1, age.min = 0, age.max = 18, age.int = 1/12,
-                          dist = "BCCGo", sigma.df = 3, nu.df = 2, mu.df = 4, tau.df = 2){
-    tmp.l <- lapply(data.list, select_fams, prop = prop.fam)
-    tmp.l <- lapply(tmp.l, select_meas, prop = prop.subject)
+                          dist = "BCCGo", sigma.df = 3, nu.df = 2, mu.df = 4, tau.df = 2, verbose = F){
+    tmp.l <- lapply(data.list, select_fams, prop = prop.fam, verbose = verbose)
+    tmp.l <- lapply(tmp.l, select_meas, prop = prop.subject, verbose = verbose)
     lapply(tmp.l, fit_gamlss, dist = dist, sigma.df = sigma.df, nu.df = nu.df, mu.df = mu.df, tau.df = tau.df, age.min = age.min, age.max = age.max )
 }
 
@@ -142,34 +144,41 @@ one_iteration <- function(data.list, prop.fam = 0.75, prop.subject = 1, age.min 
 ##' function samples families, samples measurements (and subjects), fits the model for a
 ##' given number of iterations
 ##' @title do lms iterations    
-##' @param n number of iterations
+##' @param n number of desired fits
+##' @param max.it maximum number of iterations that will be run
+##' @param verbose whether or not information about sampling will be printed during while iterate
 ##' @inheritParams one_iteration
 ##' @return list of lists for models and fitted parameters
 ##' @author Mandy Vogel
 ##' @export
-do_iterations <- function(data.list, n = 10, prop.fam = 0.75, prop.subject = 1, age.min = 0, age.max = 18, age.int = 1/12,
-                          dist = "BCCGo", mu.df = 4, sigma.df = 3, nu.df = 2, tau.df = 2){
+do_iterations <- function(data.list, n = 10, max.it = 1000, prop.fam = 0.75, prop.subject = 1, age.min = 0, age.max = 18, age.int = 1/12,
+                          dist = "BCCGo", mu.df = 4, sigma.df = 3, nu.df = 2, tau.df = 2, verbose = F){
     range.age <- range(unlist(lapply(data.list, function(df) df$age)))
-    if(age.min < range.age[1]) {
+    if(age.min < (range.age[1] - 0.005*range.age[1])) {
         age.min <- range.age[1]
-        print("requested age.min is smaller than max age in the data. set age.min to min(age).")}
-    if(age.max < range.age[2]){
+        print(paste("requested age.min is smaller than max age in the data. set age.min to min(age):", round(age.min,2)))}
+    if(age.max > (range.age[2] + 0.005*range.age[2])){
         age.max <- range.age[2]
-        print("requested age.max is greater than age range in data. set age.max to max(age).")
+        print(paste("requested age.max is greater than age range in data. set age.max to max(age):", round(age.max,2)))
     } 
     if(sum(is.na(data.list[[1]]$group)) > 0) print("no grouping variable is given. Therefore, no grouping will be done.")
     sexes <- names(data.list)
     res <- list()
-    for(i in 1:n){
-        res[[length(res) + 1]] <- one_iteration(data.list = data.list,
-                                                dist = dist,
-                                                mu.df = mu.df,
-                                                sigma.df = sigma.df,
-                                                nu.df = nu.df,
-                                                tau.df = tau.df,
-                                                prop.fam = prop.fam,
-                                                age.min = age.min,
-                                                age.max = age.max)
+    i <- 1
+    while(i <= max.it & length(res) < n ){
+        tmp.res <- one_iteration(data.list = data.list,
+                                 dist = dist,
+                                 mu.df = mu.df,
+                                 sigma.df = sigma.df,
+                                 nu.df = nu.df,
+                                 tau.df = tau.df,
+                                 prop.fam = prop.fam,
+                                 age.min = age.min,
+                                 age.max = age.max,
+                                 verbose = verbose)
+        if(!is.null(tmp.res)) res[[length(res) + 1]] <- tmp.res 
+        print(paste(i,"iterations done - fitted:",length(res)))
+        i <- i + 1 
     }
     lms <- lapply(sexes, function(sex) {
         lms <- lapply(res, function(x) x[[sex]]$lms)
