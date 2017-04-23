@@ -199,6 +199,7 @@ tprefs$weight2_20 <- cdc.weight2
 
 
 
+
 cdc.ref <- new("RefGroup",
                name = "CDC",
                refs = tprefs,
@@ -208,6 +209,17 @@ cdc.ref <- new("RefGroup",
                info = list("hc - headcircumference, wfl - weight for length",
                            "wfl and wfls - age must refer to the length variable; the function gives the sds for a given weight conditional on height"
                            ))
+
+cdc.ref@info <- list(
+    "bmi - bmi",
+    "height0_3 - height 0 - 3 years old",
+    "height2_20 - height 2- 20 years old",
+    "weight -  - weight 0 - 3 years old",
+    "weight2_20 - weight 2- 20 years old",
+    "hc - headcircumference",
+    "wfl - weight for length",
+    "wfl and wfls - age must refer to the length variable; the function gives the sds for a given weight conditional on height"
+)
 
 
 devtools::use_data(cdc.ref, overwrite = T)
@@ -1639,3 +1651,5 @@ nl4.ref <- new("RefGroup",
 
     
 devtools::use_data(nl4.ref)
+
+
