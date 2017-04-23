@@ -6,6 +6,7 @@ tmpbmi <- lapply(tmpbmi, function(x){
     x
 })
 
+
 kro.bmi <- new("ParTab",
                item = "bmi",
                dist = list(male = "BCCG", female = "BCCG"),
@@ -127,6 +128,7 @@ cdc.weight <- new("ParTab",
                )
 
 
+
 tmpwfl <- lapply(cdc.ref@ref$weigthforlength,function(x){
     x <- rename(x, mu = m, sigma = s, nu = l)
     x
@@ -166,6 +168,50 @@ cdc.ref <- new("RefGroup",
                info = list("hc - headcircumference, wfl - weight for length",
                            "wfl and wfls - age must refer to the length variable; the function gives the sds for a given weight conditional on height"
                            ))
+
+
+library(readxl)
+w2 <- read_excel("data-raw/wtage_CDC.xlsx")
+w2$Sex <- factor(w2$Sex, levels = 1:2, labels = c("male","female"))
+w2$age <- w2$Agemos/12
+w2 <- split(w2, w2$Sex)
+
+library(dplyr)
+
+tmpweigth2 <- lapply(w2,function(x){
+    x <- rename(x, mu = M, sigma = S, nu = L)
+    x <- select(x, age, mu, sigma, nu)
+    x
+})
+
+
+
+cdc.weight2 <- new("ParTab",
+               item = "weight2_20",
+               dist = list(male = "BCCG", female = "BCCG"),
+               params = tmpweigth2
+               )
+
+
+tprefs <- cdc.ref@refs
+tprefs$weight2_20 <- cdc.weight2
+
+
+
+
+cdc.ref <- new("RefGroup",
+               name = "CDC",
+               refs = tprefs,
+               citations = list(
+                   "Flegal, Katherine M., and T. J. Cole. Construction of LMS Parameters for the Centers for Disease Control and Prevention 2000 Growth Charts. Hational health statitics reports 63."
+                   ),
+               info = list("hc - headcircumference, wfl - weight for length",
+                           "wfl and wfls - age must refer to the length variable; the function gives the sds for a given weight conditional on height"
+                           ))
+
+
+devtools::use_data(cdc.ref, overwrite = T)
+
 
 (load("/media/mandy/Volume/transcend/R/packages/childsds/data/kiggsref.rda"))
 
@@ -513,7 +559,10 @@ who.ref <- new("RefGroup",
                            sftriceps = who.sftriceps,
                            armc = who.armc),
                citations = list(
-                   "de Onis, M., Onyango, A., Borghi, E., Siyam, A., Blossner, M., & Lutter, C. (2012). Worldwide implementation of the WHO child growth standards. Public Health Nutr, 12, 1-8."
+                   "de Onis, M., Onyango, A., Borghi, E., Siyam, A., Blossner, M., & Lutter, C. (2012). Worldwide implementation of the WHO child growth standards. Public Health Nutr, 12, 1-8.",
+                   "Onis, M. WHO child growth standards: length/height for age, weight-for-age, weight-for-length, weight-for-height and body mass index-for-age, methods and development. Geneva: WHO press",
+                   "de Onis, M. WHO Child Growth Standards based on length/height, weight and age. Acta paediatrica 95, 76–85 (2006)".
+
                    ),
                info = list("hc - headcircumference",
                            "wfl - weight for length",
@@ -523,7 +572,17 @@ who.ref <- new("RefGroup",
                            "wfl and wfl2 - age must refer to the length variable; the function gives the sds for a given weight conditional on height"
                            ))
 
-devtools::use_data(who.ref)
+lits <- list(
+                   "de Onis, M., Onyango, A., Borghi, E., Siyam, A., Blossner, M., & Lutter, C. (2012). Worldwide implementation of the WHO child growth standards. Public Health Nutr, 12, 1-8.",
+                   "Onis, M. WHO child growth standards: length/height for age, weight-for-age, weight-for-length, weight-for-height and body mass index-for-age, methods and development. Geneva: WHO press",
+                   "de Onis, M. WHO Child Growth Standards based on length/height, weight and age. Acta paediatrica 95, 76–85 (2006)"
+
+                   )
+
+
+who.ref@citations <- lits
+
+devtools::use_data(who.ref, overwrite = T)
 
 
 (load("../HDL.rdata"))
@@ -727,3 +786,856 @@ iron.ref <- new("RefGroup",
                            ))
 
 devtools::use_data(iron.ref)
+
+
+## dutch sitting
+
+dat <- read.table("data-raw/dutch.txt", header = T)
+
+tmpdat <- split(dat, dat$sex)
+
+tmpsh <- lapply(tmpdat,function(x){
+    x <- select(x, age, sh.l, sh.m, sh.s)
+    x <- rename(x, mu = sh.m, sigma = sh.s, nu = sh.l)
+    x
+})
+
+sitheight <- new("ParTab",
+                 item = "sitheight",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = tmpsh
+                 )
+
+
+tmpleg <- lapply(tmpdat,function(x){
+    x <- select(x, age, ll.l, ll.m, ll.s)
+    x <- rename(x, mu = ll.m, sigma = ll.s, nu = ll.l)
+    x
+})
+
+leglength <- new("ParTab",
+                 item = "leglength",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = tmpleg
+                 )
+
+tmpshh <- lapply(tmpdat,function(x){
+    x <- select(x, age, shh.l, shh.m, shh.s)
+    x <- rename(x, mu = shh.m, sigma = shh.s, nu = shh.l)
+    x
+})
+
+ratsith <- new("ParTab",
+               item = "sitoverheight",
+               dist = list(male = "BCCGo", female = "BCCGo"),
+               params = tmpshh
+               )
+
+
+fredriks05.ref <- new("RefGroup",
+                    name = "dutch sitting height and leg length",
+                    refs = list(sitt = sitheight,
+                                leglength = leglength,
+                                sittoverheight = ratsith),
+                    citations = list(
+                  "Fredriks, A. M. et al. Nationwide age references for sitting height, leg length, and sitting height/height ratio, and their diagnostic value for disproportionate growth disorders. Archives of Disease in Childhood 90, 807–812 (2005)"
+                  ),
+              info = list("sitt - sitting height",
+                          "leglength - leg length",
+                          "sittoverheight - sitting height/height ratio" 
+                           ))
+
+devtools::use_data(fredriks05.ref)
+
+## china wong
+library(magrittr)
+chinaheight <- read.table("data-raw/wongchinaheight.txt", header = T, skip  = 1, sep = "\t")
+
+chinaheight %<>% select(matches("age|male"))
+
+chinaheight <- as.data.frame(reshape(chinaheight, direction='long', 
+                                     varying=c("male_L","male_M","male_S",
+                                               "female_L","female_M","female_S"), 
+                                     timevar='sex',
+                                     sep = "_",
+                                     times=c('male', 'female'),
+                                     v.names=c('L', 'M', 'S'),
+                                     idvar=c('age')))
+
+attr(chinaheight, "reshapeLong") <- NULL
+
+chinaheight$age <- chinaheight$agem/12
+chinaheight <- split(chinaheight, chinaheight$sex)
+
+
+tmpheight <- lapply(chinaheight,function(x){
+    x <- select(x, age, L, M, S)
+    x <- rename(x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+tmpheight <- new("ParTab",
+                 item = "height",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = tmpheight
+               )
+
+
+chinaweight <- read.table("data-raw/wongchinaweight.txt", header = T, skip  = 1, sep = "\t")
+
+chinaweight %<>% select(matches("age|male"))
+
+chinaweight <- as.data.frame(reshape(chinaweight, direction='long', 
+                                     varying=c("male_L","male_M","male_S",
+                                               "female_L","female_M","female_S"), 
+                                     timevar='sex',
+                                     sep = "_",
+                                     times=c('male', 'female'),
+                                     v.names=c('L', 'M', 'S'),
+                                     idvar=c('age')))
+
+attr(chinaweight, "reshapeLong") <- NULL
+
+chinaweight$age <- chinaweight$agem/12
+chinaweight <- split(chinaweight, chinaweight$sex)
+
+
+tmpweight <- lapply(chinaweight,function(x){
+    x <- select(x, age, L, M, S)
+    x <- rename(x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+tmpweight <- new("ParTab",
+                 item = "weight",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = tmpweight
+               )
+
+
+
+chinabmi <- read.table("data-raw/wongchinabmi.txt", header = T, skip  = 1, sep = "\t")
+
+chinabmi %<>% select(matches("age|male"))
+
+chinabmi <- as.data.frame(reshape(chinabmi, direction='long', 
+                                     varying=c("male_L","male_M","male_S",
+                                               "female_L","female_M","female_S"), 
+                                     timevar='sex',
+                                     sep = "_",
+                                     times=c('male', 'female'),
+                                     v.names=c('L', 'M', 'S'),
+                                     idvar=c('age')))
+
+attr(chinabmi, "reshapeLong") <- NULL
+
+chinabmi$age <- chinabmi$agem/12
+chinabmi <- split(chinabmi, chinabmi$sex)
+
+
+tmpbmi <- lapply(chinabmi,function(x){
+    x <- select(x, age, L, M, S)
+    x <- rename(x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+tmpbmi <- new("ParTab",
+                 item = "bmi",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = tmpbmi
+               )
+
+
+
+chinahc <- read.table("data-raw/wongchinaheadcirc.txt", header = T, skip  = 1, sep = "\t")
+
+chinahc %<>% select(matches("age|male"))
+
+chinahc <- as.data.frame(reshape(chinahc, direction='long', 
+                                     varying=c("male_L","male_M","male_S",
+                                               "female_L","female_M","female_S"), 
+                                     timevar='sex',
+                                     sep = "_",
+                                     times=c('male', 'female'),
+                                     v.names=c('L', 'M', 'S'),
+                                     idvar=c('age')))
+
+attr(chinahc, "reshapeLong") <- NULL
+
+chinahc$age <- chinahc$agem/12
+chinahc <- split(chinahc, chinahc$sex)
+
+
+tmphc <- lapply(chinahc,function(x){
+    x <- select(x, age, L, M, S)
+    x <- rename(x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+tmphc <- new("ParTab",
+                 item = "hc",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = tmphc
+               )
+
+
+
+
+
+zong13.ref <- new("RefGroup",
+                  name = "dutch sitting height and leg length",
+                  refs = list(height = tmpheight,
+                              weight = tmpweight,
+                              bmi = tmpbmi,
+                              hc = tmphc),
+                  citations = list(
+                      "Zong, X.-N. & Li, H. Construction of a New Growth References for China Based on Urban Chinese Children: Comparison with the WHO Growth Standards. PLOS ONE 8, e59569 (2013)."
+                  ),
+                  info = list("height - height",
+                              "weight - weight",
+                              "bmi - bmi",
+                              "hc - head circumference"
+                              ))
+
+devtools::use_data(zong13.ref)
+
+library(AGD)
+
+nl4.hgt <- nl4.hgt[nl4.hgt$x < 100,]
+nl4.hgt$sex <- factor(nl4.hgt$sex,
+                      levels = c("M","F"),
+                      labels = c("male","female"))
+
+heightN <- filter(nl4.hgt, sub == "N")
+
+heightN <- split(heightN, heightN$sex)
+
+
+heightN <- lapply(heightN,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+heightN <- new("ParTab",
+                 item = "heightN",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = heightN
+               )
+
+
+heightT <- filter(nl4.hgt, sub == "T")
+
+heightT <- split(heightT, heightT$sex)
+
+
+heightT <- lapply(heightT,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+heightT <- new("ParTab",
+                 item = "heightT",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = heightT
+               )
+
+
+heightM <- filter(nl4.hgt, sub == "M")
+
+heightM <- split(heightM, heightM$sex)
+
+
+heightM <- lapply(heightM,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+
+heightM <- new("ParTab",
+                 item = "heightM",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = heightM
+               )
+
+
+
+
+
+## nederland weights
+
+
+nl4.wgt <- nl4.wgt[nl4.wgt$x < 100,]
+nl4.wgt$sex <- factor(nl4.wgt$sex,
+                      levels = c("M","F"),
+                      labels = c("male","female"))
+
+weightN <- filter(nl4.hgt, sub == "N")
+
+weightN <- split(weightN, weightN$sex)
+
+
+weightN <- lapply(weightN,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+weightN <- new("ParTab",
+                 item = "weightN",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = weightN
+               )
+
+
+weightT <- filter(nl4.hgt, sub == "T")
+
+weightT <- split(weightT, weightT$sex)
+
+
+weightT <- lapply(weightT,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+weightT <- new("ParTab",
+                 item = "weightT",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = weightT
+               )
+
+
+weightM <- filter(nl4.hgt, sub == "M")
+
+weightM <- split(weightM, weightM$sex)
+
+
+weightM <- lapply(weightM,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+
+weightM <- new("ParTab",
+                 item = "weightM",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = weightM
+               )
+
+
+## nederlands bmi
+
+nl4.bmi <- nl4.bmi[nl4.bmi$x < 100,]
+nl4.bmi$sex <- factor(nl4.bmi$sex,
+                      levels = c("M","F"),
+                      labels = c("male","female"))
+
+bmiN <- filter(nl4.bmi, sub == "N")
+
+bmiN <- split(bmiN, bmiN$sex)
+
+
+bmiN <- lapply(bmiN,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+bmiN <- new("ParTab",
+                 item = "bmiN",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = bmiN
+               )
+
+
+bmiT <- filter(nl4.hgt, sub == "T")
+
+bmiT <- split(bmiT, bmiT$sex)
+
+
+bmiT <- lapply(bmiT,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+bmiT <- new("ParTab",
+                 item = "bmiT",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = bmiT
+               )
+
+
+bmiM <- filter(nl4.hgt, sub == "T")
+
+bmiM <- split(bmiM, bmiM$sex)
+
+
+bmiM <- lapply(bmiM,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+
+bmiM <- new("ParTab",
+                 item = "bmiM",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = bmiM
+               )
+
+## nederlands headcircum
+
+
+nl4.hdc <- nl4.hdc[nl4.hdc$x < 100,]
+nl4.hdc$sex <- factor(nl4.hdc$sex,
+                      levels = c("M","F"),
+                      labels = c("male","female"))
+
+hdcN <- filter(nl4.hdc, sub == "N")
+
+hdcN <- split(hdcN, hdcN$sex)
+
+
+hdcN <- lapply(hdcN,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+hdcN <- new("ParTab",
+                 item = "hdcN",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = hdcN
+               )
+
+
+hdcT <- filter(nl4.hgt, sub == "T")
+
+hdcT <- split(hdcT, hdcT$sex)
+
+
+hdcT <- lapply(hdcT,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+hdcT <- new("ParTab",
+                 item = "hdcT",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = hdcT
+               )
+
+
+hdcM <- filter(nl4.hgt, sub == "T")
+
+hdcM <- split(hdcM, hdcM$sex)
+
+
+hdcM <- lapply(hdcM,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+
+hdcM <- new("ParTab",
+                 item = "hdcM",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = hdcM
+               )
+
+
+## nederlands hip 
+
+nl4.hip <- nl4.hip[nl4.hip$x < 100,]
+nl4.hip$sex <- factor(nl4.hip$sex,
+                      levels = c("M","F"),
+                      labels = c("male","female"))
+
+hipN <- filter(nl4.hip, sub == "N")
+
+hipN <- split(hipN, hipN$sex)
+
+
+hipN <- lapply(hipN,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+hipN <- new("ParTab",
+                 item = "hipN",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = hipN
+               )
+
+
+hipT <- filter(nl4.hgt, sub == "T")
+
+hipT <- split(hipT, hipT$sex)
+
+
+hipT <- lapply(hipT,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+hipT <- new("ParTab",
+                 item = "hipT",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = hipT
+               )
+
+
+hipM <- filter(nl4.hgt, sub == "T")
+
+hipM <- split(hipM, hipM$sex)
+
+
+hipM <- lapply(hipM,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+
+hipM <- new("ParTab",
+                 item = "hipM",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = hipM
+               )
+
+
+
+## nederlands waist
+
+nl4.wst <- nl4.wst[nl4.wst$x < 100,]
+nl4.wst$sex <- factor(nl4.wst$sex,
+                      levels = c("M","F"),
+                      labels = c("male","female"))
+
+wstN <- filter(nl4.wst, sub == "N")
+
+wstN <- split(wstN, wstN$sex)
+
+
+wstN <- lapply(wstN,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+wstN <- new("ParTab",
+                 item = "wstN",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = wstN
+               )
+
+
+wstT <- filter(nl4.hgt, sub == "T")
+
+wstT <- split(wstT, wstT$sex)
+
+
+wstT <- lapply(wstT,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+wstT <- new("ParTab",
+                 item = "wstT",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = wstT
+               )
+
+
+wstM <- filter(nl4.hgt, sub == "T")
+
+wstM <- split(wstM, wstM$sex)
+
+
+wstM <- lapply(wstM,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+
+wstM <- new("ParTab",
+                 item = "wstM",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = wstM
+               )
+
+## nederlands waist hip
+nl4.whr <- nl4.whr[nl4.whr$x < 100,]
+nl4.whr$sex <- factor(nl4.whr$sex,
+                      levels = c("M","F"),
+                      labels = c("male","female"))
+
+whrN <- filter(nl4.whr, sub == "N")
+
+whrN <- split(whrN, whrN$sex)
+
+
+whrN <- lapply(whrN,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+whrN <- new("ParTab",
+                 item = "whrN",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = whrN
+               )
+
+
+whrT <- filter(nl4.hgt, sub == "T")
+
+whrT <- split(whrT, whrT$sex)
+
+
+whrT <- lapply(whrT,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+whrT <- new("ParTab",
+                 item = "whrT",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = whrT
+               )
+
+
+whrM <- filter(nl4.hgt, sub == "T")
+
+whrM <- split(whrM, whrM$sex)
+
+
+whrM <- lapply(whrM,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+
+whrM <- new("ParTab",
+                 item = "whrM",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = whrM
+               )
+
+
+## nederlands sitting height
+
+nl4.sit <- nl4.sit[nl4.sit$x < 100,]
+nl4.sit$sex <- factor(nl4.sit$sex,
+                      levels = c("M","F"),
+                      labels = c("male","female"))
+
+sitN <- filter(nl4.sit, sub == "N")
+
+sitN <- split(sitN, sitN$sex)
+
+
+sitN <- lapply(sitN,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+sitN <- new("ParTab",
+                 item = "sitN",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = sitN
+               )
+
+
+sitT <- filter(nl4.hgt, sub == "T")
+
+sitT <- split(sitT, sitT$sex)
+
+
+sitT <- lapply(sitT,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+sitT <- new("ParTab",
+                 item = "sitT",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = sitT
+               )
+
+
+sitM <- filter(nl4.hgt, sub == "T")
+
+sitM <- split(sitM, sitM$sex)
+
+
+sitM <- lapply(sitM,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+
+sitM <- new("ParTab",
+                 item = "sitM",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = sitM
+               )
+
+
+## nederlands shh
+nl4.shh <- nl4.shh[nl4.shh$x < 100,]
+nl4.shh$sex <- factor(nl4.shh$sex,
+                      levels = c("M","F"),
+                      labels = c("male","female"))
+
+shhN <- filter(nl4.shh, sub == "N")
+
+shhN <- split(shhN, shhN$sex)
+
+
+shhN <- lapply(shhN,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+shhN <- new("ParTab",
+                 item = "shhN",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = shhN
+               )
+
+
+shhT <- filter(nl4.hgt, sub == "T")
+
+shhT <- split(shhT, shhT$sex)
+
+
+shhT <- lapply(shhT,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+shhT <- new("ParTab",
+                 item = "shhT",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = shhT
+               )
+
+
+shhM <- filter(nl4.hgt, sub == "T")
+
+shhM <- split(shhM, shhM$sex)
+
+
+shhM <- lapply(shhM,function(x){
+    x <- select(x, x, L, M, S)
+    x <- rename(x, age = x, mu = M, sigma = S, nu = L)
+    x
+})
+
+
+
+shhM <- new("ParTab",
+                 item = "shhM",
+                 dist = list(male = "BCCGo", female = "BCCGo"),
+                 params = shhM
+               )
+
+nl4.ref <- new("RefGroup",
+               name = "dutch sitting height and leg length",
+               refs = list(heightN = heightN,
+                           heightT = heightT,
+                           heightM = heightM,
+                           weightN = weightN,
+                           weightT = weightT,
+                           weightM = weightM,
+                           bmiN = bmiN,
+                           bmiT = bmiT,
+                           bmiM = bmiM,
+                           hipN = hipN,
+                           hipT = hipT,
+                           hipM = hipM,
+                           wstN = wstN,
+                           wstT = wstT,
+                           wstM = wstM,
+                           whrN = whrN,
+                           whrT = whrT,
+                           whrM = whrM,
+                           sitN = sitN,
+                           sitT = sitT,
+                           sitM = sitM,
+                           shhN = shhN,
+                           shhT = shhT,
+                           shhM = shhM,
+                           hcN  = hdcN,
+                           hcT  = hdcT,
+                           hcM  = hdcM),
+               citations = list(
+                   "Fredriks, A. M. et al. Nationwide age references for sitting height, leg length, and sitting height/height ratio, and their diagnostic value for disproportionate growth disorders. Archives of Disease in Childhood 90, 807–812 (2005).",
+"Fredriks, A. M. et al. Height, weight, body mass index and pubertal development references for children of Moroccan origin in The Netherlands. Acta Paediatr. 93, 817–824 (2004).",
+"Fredriks, A. M. et al. Continuing positive secular growth change in The Netherlands 1955–1997. Pediatric research 47, 316–323 (2000).",
+"Fredriks, A. M. et al. Height, weight, body mass index and pubertal development reference values for children of Turkish origin in the Netherlands. Eur. J. Pediatr. 162, 788–793 (2003).",
+"Fredriks, A. M., van Buuren, S., Wit, J. M. & Verloove-Vanhorick, S. P. Body index measurements in 1996–7 compared with 1980. Archives of disease in childhood 82, 107–112 (2000).",
+"R package: AGD, Stef van Buuren, http://www.stefvanbuuren.nl/"
+               ),
+               info = list("heightN, heightT, heightM - height for Dutch, Turkish, Morrocon origins resp",
+                           "weightN, heightT, heightM - weight for Dutch, Turkish, Morrocon origins resp",
+                           "bmiN, bmiT, bmiM - bmi for Dutch, Turkish, Morrocon origins resp",
+                           "hcN, hcT, hcM - head circumference for Dutch, Turkish, Morrocon origins resp",
+                           "hipN, hipT, hipM - hip circumference for Dutch, Turkish, Morrocon origins resp",
+                           "wstN, wstT, wstM - waist circumference for Dutch, Turkish, Morrocon origins resp",
+                           "whrN, whrT, whrM - waist to hip ratio for Dutch, Turkish, Morrocon origins resp",                           
+                           "sitN, sitT, sitM - sitting height for Dutch, Turkish, Morrocon origins resp",
+                           "shhN, shhT, shhM - sitting height/height ration for Dutch, Turkish, Morrocon origins resp"))
+                           
+
+    
+devtools::use_data(nl4.ref)

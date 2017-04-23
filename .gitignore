@@ -83,3 +83,5 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 
+*.TIF
+/data-raw/wtage_CDC.xlsx
