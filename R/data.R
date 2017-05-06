@@ -59,3 +59,58 @@ NULL
 #' @usage lipids.ref
 #' @source Dathan-Stumpf, A. et al. Pediatric reference data of serum lipids and prevalence of dyslipidemia: Results from a population-based cohort in Germany. Clinical Biochemistry 49, 740–749 (2016).
 NULL
+
+#' Parameters derived from Turkish children
+#' @name turkish.ref
+#' @docType data
+#' @usage turkish.ref
+#' @source Hatipoglu, N. et al. Waist circumference percentiles for 7- to 17-year-old Turkish children and adolescents. Eur J Pediatr 167, 383–389 (2008);Bundak, R. et al. Body mass index references for Turkish children. Acta Pædiatrica 95, 194–198 (2006).
+NULL
+
+
+#' Parameters derived from Japanese children
+#' @name japanese.ref
+#' @docType data
+#' @usage japanese.ref
+#' @source Inokuchi, M., Matsuo, N., Anzo, M., Takayama, J. I. & Hasegawa, T. Age-dependent percentile for waist circumference for Japanese children based on the 1992–1994 cross-sectional national survey data. Eur J Pediatr 166, 655–661 (2007)
+NULL
+
+
+#' Parameters derived from US children (additional to the cdc.ref)
+#' @name us.ref
+#' @docType data
+#' @usage us.ref
+#' @source Sharma, A. K., Metzger, D. L., Daymont, C., Hadjiyannakis, S. & Rodd, C. J. LMS tables for waist-circumference and waist-height ratio Z-scores in children aged 5-19 y in NHANES III: association with cardio-metabolic risks. Pediatric research (2015)
+NULL
+
+
+#' Parameters derived from Saudi children
+#' @name saudi.ref
+#' @docType data
+#' @usage saudi.ref
+#' @source Mouzan, M. I. E., Salloum, A. A. A., Alqurashi, M. M., Herbish, A. S. A. & Omar, A. A. The LMS and Z scale growth reference for Saudi school-age children and adolescents. Saudi Journal of Gastroenterology 22, 331 (2016)
+NULL
+
+
+#' Parameters derived Ethiopian children
+#' @name ethiop.ref
+#' @docType data
+#' @usage ehtiop.ref
+#' @source Amare, E. B. et al. Reference Ranges for Head Circumference in Ethiopian Children 0–2 Years of Age. World Neurosurgery 84, 1566–1571.e2 (2015).
+NULL
+
+
+#' Parameters derived from Portuguese children
+#' @name portug.ref
+#' @docType data
+#' @usage portug.ref
+#' @source Chaves, R., Baxter-Jones, A., Souza, M., Santos, D. & Maia, J. Height, weight, body composition, and waist circumference references for 7-to 17-year-old children from rural Portugal. HOMO-Journal of Comparative Human Biology 66, 264–277 (2015)start123.
+NULL
+
+
+#' Parameters derived from Italian children
+#' @name italian.ref
+#' @docType data
+#' @usage italian.ref
+#' @source Cacciari E, Milani S, Balsamo A, Spada E, Bona G, Cavallo L, et al. Italian cross-sectional growth charts for height, weight and BMI (2 to 20 yr). J Endocrinol Invest. 2006 Jul 1;29(7):581–93.
+NULL
