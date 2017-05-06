@@ -3,7 +3,7 @@ Title: Data and Methods Around Reference Values in Pediatrics
 Version: 0.6.1
 Authors@R: person("Mandy", "Vogel", email = "mandy.vogel@googlemail.com", role = c("aut", "cre"))
 Description: Calculation of standard deviation scores adduced from different
-    growth standards (WHO, UK, German). Therefore, the calculation for SDS-values
+    growth standards (WHO, UK, German). Therefore, the calculation of SDS-values
     for different measures like BMI, weight, height, head circumference, different
     ratios, etc. are easy to carry out. Also, references for laboratory values in
     children are available: serum lipids, iron-related blood parameters. In the
