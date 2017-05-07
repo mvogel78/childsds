@@ -54,6 +54,12 @@ anthro$bmi_perc <- sds(anthro$bmi,
                        ref = kro.ref,
                        item = "bmi",
                        type = "perc")
+data(who.ref)
+x <- data.frame(height=c(50,100,60,54),
+                sex=c("m","f","f","m"),
+                age=c(0,2.9,0.6,0.2))
+sds(value = x$height, age = x$age, sex = x$sex, male = "m", female = "f",
+    ref = who.ref, item = "height")
 }
 \author{
 Mandy Vogel

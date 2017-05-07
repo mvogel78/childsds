@@ -4,11 +4,11 @@
 \alias{make_percentile_tab}
 \title{calculate raw values}
 \usage{
-make_percentile_tab(refs, item, perc = c(2.5, 5, 50, 95, 97.5), stack = F,
+make_percentile_tab(ref, item, perc = c(2.5, 5, 50, 95, 97.5), stack = F,
   sex, age)
 }
 \arguments{
-\item{refs}{Refgroup object}
+\item{ref}{Refgroup object}
 
 \item{item}{name of the measurement item}
 
@@ -31,6 +31,16 @@ Calculate raw values for percentile curve
 \details{
 calculates quantile values for given RefGroup and given
 percentiles
+}
+\examples{
+ptab <- make_percentile_tab(ref = kro.ref,
+                            item = "height",
+                           perc = c(2.5,10,50,90,97.5),
+                           stack = TRUE)
+
+ggplot2::ggplot(ptab, ggplot2::aes(x = age, y = value, colour = variable)) +
+   ggplot2::geom_line() +
+   ggplot2::facet_wrap(~ sex, nrow = 2)
 }
 \author{
 Mandy Vogel

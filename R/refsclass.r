@@ -42,7 +42,11 @@ setMethod("show","RefGroup",
               print(paste(object@name, "containing", length(object@refs), "reference tables"))
               lapply(object@refs, show);
               lapply(object@citations, show);
-              lapply(object@info, print) 
+              lapply(object@info, print)
+              print(paste("use one of the following keys:",
+                          paste(names(object@refs),
+                                collapse = " - ")))
+              
           })
 
 ### Class ParTab
@@ -116,12 +120,24 @@ setMethod("show","ParTab",
 ##'                        ref = kro.ref,
 ##'                        item = "bmi",
 ##'                        type = "perc")
+##' data(who.ref)
+##' x <- data.frame(height=c(50,100,60,54),
+##'                 sex=c("m","f","f","m"),
+##'                 age=c(0,2.9,0.6,0.2))
+##' sds(value = x$height, age = x$age, sex = x$sex, male = "m", female = "f",
+##'     ref = who.ref, item = "height")
 ##' @author Mandy Vogel
 ##' @export
 sds <- function(value, age, sex, item, ref, type = "SDS", male = "male", female = "female"){
     if(!(length(value) == length(age) & length(value) == length(sex))){
         print("value, age, and sex must be of the same length")
         invisible(return(NULL))
+    }
+    if(!item %in% names(ref@refs)){
+        stop(paste(item,"is not available in the given refs object.",
+                    "Please choose one of the following items:",
+                    paste(names(ref@refs), collapse = " - ")))
+        return(invisible(NULL))
     }
     sex <- as.character(factor(sex, levels = c(male, female), labels = c("male", "female")))
     refs <- ref@refs[[item]]@params

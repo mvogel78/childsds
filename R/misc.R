@@ -3,7 +3,7 @@
 ##' calculates quantile values for given RefGroup and given
 ##' percentiles
 ##' @title calculate raw values 
-##' @param refs Refgroup object
+##' @param ref Refgroup object
 ##' @param item name of the measurement item
 ##' @param perc vector of percentiles to be calculated
 ##' @param stack wether or not the data should be stacked, stacked data
@@ -13,12 +13,21 @@
 ##' @return data frame either with the different percentiles as columns
 ##' or, if stacked, as data frame with four columns: age, sex, variable, value
 ##' @author Mandy Vogel
+##' @examples
+##' ptab <- make_percentile_tab(ref = kro.ref,
+##'                             item = "height",
+##'                            perc = c(2.5,10,50,90,97.5),
+##'                            stack = TRUE)
+##'
+##' ggplot2::ggplot(ptab, ggplot2::aes(x = age, y = value, colour = variable)) +
+##'    ggplot2::geom_line() +
+##'    ggplot2::facet_wrap(~ sex, nrow = 2)
 ##' @export
-make_percentile_tab <- function(refs, item, perc = c(2.5,5,50,95,97.5), stack = F, sex, age){
-    reftabs <- refs@refs[[item]]@params
+make_percentile_tab <- function(ref, item, perc = c(2.5,5,50,95,97.5), stack = F, sex, age){
+    reftabs <- ref@refs[[item]]@params
     nam <- paste(sprintf("perc_%02d",floor(perc)),
                  gsub("0.","", perc-floor(perc)), sep = "_")
-    dists <- unlist(refs@refs[[item]]@dist)
+    dists <- unlist(ref@refs[[item]]@dist)
     perc <- perc/100
     sexes <- c(male = "male", female = "female")
     pertab <- lapply(sexes, function(sex){

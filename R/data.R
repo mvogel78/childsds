@@ -114,3 +114,30 @@ NULL
 #' @usage italian.ref
 #' @source Cacciari E, Milani S, Balsamo A, Spada E, Bona G, Cavallo L, et al. Italian cross-sectional growth charts for height, weight and BMI (2 to 20 yr). J Endocrinol Invest. 2006 Jul 1;29(7):581–93.
 NULL
+
+#' Parameters derived from the 4th Dutch growth study
+#' @name nl4.ref
+#' @docType data
+#' @usage nl4.ref
+#' @source Fredriks, A. M. et al. Nationwide age references for sitting height, leg length, and sitting height/height ratio, and their diagnostic value for disproportionate growth disorders. Archives of Disease in Childhood 90, 807–812 (2005);
+#' Fredriks, A. M. et al. Height, weight, body mass index and pubertal development references for children of Moroccan origin in The Netherlands. Acta Paediatr. 93, 817–824 (2004);
+#' Fredriks, A. M. et al. Continuing positive secular growth change in The Netherlands 1955–1997. Pediatric research 47, 316–323 (2000);
+#' Fredriks, A. M. et al. Height, weight, body mass index and pubertal development reference values for children of Turkish origin in the Netherlands. Eur. J. Pediatr. 162, 788–793 (2003); Fredriks, A. M., van Buuren, S., Wit, J. M. & Verloove-Vanhorick, S. P. Body index measurements in 1996–7 compared with 1980. Archives of disease in childhood 82, 107–112 (2000);
+#' R package: AGD, Stef van Buuren, http://www.stefvanbuuren.nl/
+NULL
+
+#' Parameters derived from Dutch children (additional to nl4.ref)
+#' @name fredriks05.ref
+#' @docType data
+#' @usage fredriks05.ref
+#' @source Fredriks, A. M. et al. Nationwide age references for sitting height, leg length, and sitting height/height ratio, and their diagnostic value for disproportionate growth disorders. Archives of Disease in Childhood 90, 807–812 (2005)
+NULL
+
+#' Parameters derived from Chinese children (additional to nl4.ref)
+#' @name zong13.ref
+#' @docType data
+#' @usage zong13.ref
+#' @source Zong, X.-N. & Li, H. Construction of a New Growth References for China Based on Urban Chinese Children: Comparison with the WHO Growth Standards. PLOS ONE 8, e59569 (2013).
+NULL
+
+

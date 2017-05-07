@@ -20,7 +20,8 @@ Imports:
     tidyr,
     boot
 Suggests:
-    reshape2
+    reshape2,
+    ggplot2
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
