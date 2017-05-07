@@ -85,3 +85,5 @@ vignettes/*.pdf
 
 *.TIF
 /data-raw/wtage_CDC.xlsx
+/data-raw/aethiophc.txt
+data-raw/*.*
