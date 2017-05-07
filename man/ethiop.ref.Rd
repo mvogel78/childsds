@@ -5,7 +5,7 @@
 \alias{ethiop.ref}
 \title{Parameters derived Ethiopian children}
 \source{
-Amare, E. B. et al. Reference Ranges for Head Circumference in Ethiopian Children 0–2 Years of Age. World Neurosurgery 84, 1566–1571.e2 (2015).
+Amare, E. B. et al. Reference Ranges for Head Circumference in Ethiopian Children 0--2 Years of Age. World Neurosurgery 84, 1566--1571.e2 (2015).
 }
 \usage{
 ehtiop.ref

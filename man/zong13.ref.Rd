@@ -5,7 +5,7 @@
 \alias{zong13.ref}
 \title{Parameters derived from Chinese children (additional to nl4.ref)}
 \source{
-Zong, X.-N. & Li, H. Construction of a New Growth References for China Based on Urban Chinese Children: Comparison with the WHO Growth Standards. PLOS ONE 8, e59569 (2013).
+Zong, X.-N., Li, H. Construction of a New Growth References for China Based on Urban Chinese Children: Comparison with the WHO Growth Standards. PLOS ONE 8, e59569 (2013).
 }
 \usage{
 zong13.ref

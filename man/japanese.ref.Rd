@@ -5,7 +5,7 @@
 \alias{japanese.ref}
 \title{Parameters derived from Japanese children}
 \source{
-Inokuchi, M., Matsuo, N., Anzo, M., Takayama, J. I. & Hasegawa, T. Age-dependent percentile for waist circumference for Japanese children based on the 1992–1994 cross-sectional national survey data. Eur J Pediatr 166, 655–661 (2007)
+Inokuchi, M., Matsuo, N., Anzo, M., Takayama, J. I. & Hasegawa, T. Age-dependent percentile for waist circumference for Japanese children based on the 1992--1994 cross-sectional national survey data. Eur J Pediatr 166, 655--661 (2007)
 }
 \usage{
 japanese.ref

@@ -57,14 +57,14 @@ NULL
 #' @name lipids.ref
 #' @docType data
 #' @usage lipids.ref
-#' @source Dathan-Stumpf, A. et al. Pediatric reference data of serum lipids and prevalence of dyslipidemia: Results from a population-based cohort in Germany. Clinical Biochemistry 49, 740–749 (2016).
+#' @source Dathan-Stumpf, A. et al. Pediatric reference data of serum lipids and prevalence of dyslipidemia: Results from a population-based cohort in Germany. Clinical Biochemistry 49, 740--749 (2016).
 NULL
 
 #' Parameters derived from Turkish children
 #' @name turkish.ref
 #' @docType data
 #' @usage turkish.ref
-#' @source Hatipoglu, N. et al. Waist circumference percentiles for 7- to 17-year-old Turkish children and adolescents. Eur J Pediatr 167, 383–389 (2008);Bundak, R. et al. Body mass index references for Turkish children. Acta Pædiatrica 95, 194–198 (2006).
+#' @source Hatipoglu, N. et al. Waist circumference percentiles for 7- to 17-year-old Turkish children and adolescents. Eur J Pediatr 167, 383--389 (2008);Bundak, R. et al. Body mass index references for Turkish children. Acta Pædiatrica 95, 194--198 (2006).
 NULL
 
 
@@ -72,7 +72,7 @@ NULL
 #' @name japanese.ref
 #' @docType data
 #' @usage japanese.ref
-#' @source Inokuchi, M., Matsuo, N., Anzo, M., Takayama, J. I. & Hasegawa, T. Age-dependent percentile for waist circumference for Japanese children based on the 1992–1994 cross-sectional national survey data. Eur J Pediatr 166, 655–661 (2007)
+#' @source Inokuchi, M., Matsuo, N., Anzo, M., Takayama, J. I. & Hasegawa, T. Age-dependent percentile for waist circumference for Japanese children based on the 1992--1994 cross-sectional national survey data. Eur J Pediatr 166, 655--661 (2007)
 NULL
 
 
@@ -96,7 +96,7 @@ NULL
 #' @name ethiop.ref
 #' @docType data
 #' @usage ehtiop.ref
-#' @source Amare, E. B. et al. Reference Ranges for Head Circumference in Ethiopian Children 0–2 Years of Age. World Neurosurgery 84, 1566–1571.e2 (2015).
+#' @source Amare, E. B. et al. Reference Ranges for Head Circumference in Ethiopian Children 0--2 Years of Age. World Neurosurgery 84, 1566--1571.e2 (2015).
 NULL
 
 
@@ -104,7 +104,7 @@ NULL
 #' @name portug.ref
 #' @docType data
 #' @usage portug.ref
-#' @source Chaves, R., Baxter-Jones, A., Souza, M., Santos, D. & Maia, J. Height, weight, body composition, and waist circumference references for 7-to 17-year-old children from rural Portugal. HOMO-Journal of Comparative Human Biology 66, 264–277 (2015)start123.
+#' @source Chaves, R., Baxter-Jones, A., Souza, M., Santos, D. & Maia, J. Height, weight, body composition, and waist circumference references for 7-to 17-year-old children from rural Portugal. HOMO-Journal of Comparative Human Biology 66, 264--277 (2015)start123.
 NULL
 
 
@@ -112,17 +112,17 @@ NULL
 #' @name italian.ref
 #' @docType data
 #' @usage italian.ref
-#' @source Cacciari E, Milani S, Balsamo A, Spada E, Bona G, Cavallo L, et al. Italian cross-sectional growth charts for height, weight and BMI (2 to 20 yr). J Endocrinol Invest. 2006 Jul 1;29(7):581–93.
+#' @source Cacciari E, Milani S, Balsamo A, Spada E, Bona G, Cavallo L, et al. Italian cross-sectional growth charts for height, weight and BMI (2 to 20 yr). J Endocrinol Invest. 2006 Jul 1;29(7):581--93.
 NULL
 
 #' Parameters derived from the 4th Dutch growth study
 #' @name nl4.ref
 #' @docType data
 #' @usage nl4.ref
-#' @source Fredriks, A. M. et al. Nationwide age references for sitting height, leg length, and sitting height/height ratio, and their diagnostic value for disproportionate growth disorders. Archives of Disease in Childhood 90, 807–812 (2005);
-#' Fredriks, A. M. et al. Height, weight, body mass index and pubertal development references for children of Moroccan origin in The Netherlands. Acta Paediatr. 93, 817–824 (2004);
-#' Fredriks, A. M. et al. Continuing positive secular growth change in The Netherlands 1955–1997. Pediatric research 47, 316–323 (2000);
-#' Fredriks, A. M. et al. Height, weight, body mass index and pubertal development reference values for children of Turkish origin in the Netherlands. Eur. J. Pediatr. 162, 788–793 (2003); Fredriks, A. M., van Buuren, S., Wit, J. M. & Verloove-Vanhorick, S. P. Body index measurements in 1996–7 compared with 1980. Archives of disease in childhood 82, 107–112 (2000);
+#' @source Fredriks, A. M. et al. Nationwide age references for sitting height, leg length, and sitting height/height ratio, and their diagnostic value for disproportionate growth disorders. Archives of Disease in Childhood 90, 807--812 (2005);
+#' Fredriks, A. M. et al. Height, weight, body mass index and pubertal development references for children of Moroccan origin in The Netherlands. Acta Paediatr. 93, 817--824 (2004);
+#' Fredriks, A. M. et al. Continuing positive secular growth change in The Netherlands 1955--1997. Pediatric research 47, 316--323 (2000);
+#' Fredriks, A. M. et al. Height, weight, body mass index and pubertal development reference values for children of Turkish origin in the Netherlands. Eur. J. Pediatr. 162, 788--793 (2003); Fredriks, A. M., van Buuren, S., Wit, J. M. & Verloove-Vanhorick, S. P. Body index measurements in 1996--7 compared with 1980. Archives of disease in childhood 82, 107--112 (2000);
 #' R package: AGD, Stef van Buuren, http://www.stefvanbuuren.nl/
 NULL
 
@@ -130,14 +130,14 @@ NULL
 #' @name fredriks05.ref
 #' @docType data
 #' @usage fredriks05.ref
-#' @source Fredriks, A. M. et al. Nationwide age references for sitting height, leg length, and sitting height/height ratio, and their diagnostic value for disproportionate growth disorders. Archives of Disease in Childhood 90, 807–812 (2005)
+#' @source Fredriks, A. M. et al. Nationwide age references for sitting height, leg length, and sitting height/height ratio, and their diagnostic value for disproportionate growth disorders. Archives of Disease in Childhood 90, 807--812 (2005)
 NULL
 
 #' Parameters derived from Chinese children (additional to nl4.ref)
 #' @name zong13.ref
 #' @docType data
 #' @usage zong13.ref
-#' @source Zong, X.-N. & Li, H. Construction of a New Growth References for China Based on Urban Chinese Children: Comparison with the WHO Growth Standards. PLOS ONE 8, e59569 (2013).
+#' @source Zong, X.-N., Li, H. Construction of a New Growth References for China Based on Urban Chinese Children: Comparison with the WHO Growth Standards. PLOS ONE 8, e59569 (2013).
 NULL
 
 

@@ -5,7 +5,7 @@
 \alias{turkish.ref}
 \title{Parameters derived from Turkish children}
 \source{
-Hatipoglu, N. et al. Waist circumference percentiles for 7- to 17-year-old Turkish children and adolescents. Eur J Pediatr 167, 383–389 (2008);Bundak, R. et al. Body mass index references for Turkish children. Acta Pædiatrica 95, 194–198 (2006).
+Hatipoglu, N. et al. Waist circumference percentiles for 7- to 17-year-old Turkish children and adolescents. Eur J Pediatr 167, 383--389 (2008);Bundak, R. et al. Body mass index references for Turkish children. Acta Pædiatrica 95, 194--198 (2006).
 }
 \usage{
 turkish.ref

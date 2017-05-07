@@ -5,7 +5,7 @@
 \alias{italian.ref}
 \title{Parameters derived from Italian children}
 \source{
-Cacciari E, Milani S, Balsamo A, Spada E, Bona G, Cavallo L, et al. Italian cross-sectional growth charts for height, weight and BMI (2 to 20 yr). J Endocrinol Invest. 2006 Jul 1;29(7):581–93.
+Cacciari E, Milani S, Balsamo A, Spada E, Bona G, Cavallo L, et al. Italian cross-sectional growth charts for height, weight and BMI (2 to 20 yr). J Endocrinol Invest. 2006 Jul 1;29(7):581--93.
 }
 \usage{
 italian.ref

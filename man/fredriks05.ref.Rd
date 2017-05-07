@@ -5,7 +5,7 @@
 \alias{fredriks05.ref}
 \title{Parameters derived from Dutch children (additional to nl4.ref)}
 \source{
-Fredriks, A. M. et al. Nationwide age references for sitting height, leg length, and sitting height/height ratio, and their diagnostic value for disproportionate growth disorders. Archives of Disease in Childhood 90, 807–812 (2005)
+Fredriks, A. M. et al. Nationwide age references for sitting height, leg length, and sitting height/height ratio, and their diagnostic value for disproportionate growth disorders. Archives of Disease in Childhood 90, 807--812 (2005)
 }
 \usage{
 fredriks05.ref
