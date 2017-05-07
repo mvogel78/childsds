@@ -573,7 +573,7 @@ who.ref <- new("RefGroup",
                citations = list(
                    "de Onis, M., Onyango, A., Borghi, E., Siyam, A., Blossner, M., & Lutter, C. (2012). Worldwide implementation of the WHO child growth standards. Public Health Nutr, 12, 1-8.",
                    "Onis, M. WHO child growth standards: length/height for age, weight-for-age, weight-for-length, weight-for-height and body mass index-for-age, methods and development. Geneva: WHO press",
-                   "de Onis, M. WHO Child Growth Standards based on length/height, weight and age. Acta paediatrica 95, 76–85 (2006)".
+                   "de Onis, M. WHO Child Growth Standards based on length/height, weight and age. Acta paediatrica 95, 76–85 (2006)"
 
                    ),
                info = list("hc - headcircumference",

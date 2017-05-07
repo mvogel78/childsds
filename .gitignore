@@ -87,3 +87,5 @@ vignettes/*.pdf
 /data-raw/wtage_CDC.xlsx
 /data-raw/aethiophc.txt
 data-raw/*.*
+data-raw/createrefs.r
+*data-raw/createrefs.r
