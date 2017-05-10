@@ -1,6 +1,6 @@
 Package: childsds
 Title: Data and Methods Around Reference Values in Pediatrics
-Version: 0.6.1
+Version: 0.6.2
 Authors@R: person("Mandy", "Vogel", email = "mandy.vogel@googlemail.com", role = c("aut", "cre"))
 Description: Calculation of standard deviation scores adduced from different
     growth standards (WHO, UK, Germany, Italy, China, etc). Therefore, the calculation of SDS-values

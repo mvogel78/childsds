@@ -57,7 +57,7 @@ select_fams <- function(data, prop = 0.75, group, verbose = F){
     if(sum(is.na(data$group)) > 0) {
         if(verbose) print("select_fams: Missings in group variable. Returning original data set.")
         return(data)}
-    weights <- dplyr::group_by(data, group) %>% dplyr::summarise(n=dplyr::n(), wgt = 1-1/(dplyr::n()+1))
+    weights <- dplyr::group_by(data, group) %>% dplyr::summarise(n=base::length(age), wgt = 1-1/(base::length(age)+1))
     weights <- weights$group[sample(1:nrow(weights),size = (nrow(weights) * prop), prob = weights$wgt)]
     data[data$group %in% weights,]
 }
