@@ -141,3 +141,12 @@ NULL
 NULL
 
 
+#' Parameters derived from the German KiGGS cohort
+#' @name kiggs_bp.ref
+#' @docType data
+#' @usage kiggs_bp.ref
+#' @details contains 2-dimensional reference grid. Do not use with \code{\link{sds}} but \code{\link{sds_2d}}
+#' @source Neuhauser, H. K., Thamm, M., Ellert, U., Hense, H. W. & Rosario, A. S. Blood Pressure Percentiles by Age and Height from Nonoverweight Children and Adolescents in Germany. Pediatrics peds.2010-1290 (2011). doi:10.1542/peds.2010-1290.
+NULL
+
+

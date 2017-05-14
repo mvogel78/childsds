@@ -1,3 +1,11 @@
+# childsds 0.6.2
+## Major changes
+* add sds_2d for calculation of bloodpressure sds
+* add kiggs bloodpressure references
+
+## Bug fixes
+* Remove direct calls to dplyr::n()
+
 # childsds 0.6.1
 
 * Added a `NEWS.md` file to track changes to the package.
@@ -8,6 +16,4 @@
 ## Bug fixes
 * fix namespace problems for gamlss distributions
 * fix missing export of sds() function
-
-
 
