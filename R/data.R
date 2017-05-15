@@ -150,3 +150,12 @@ NULL
 NULL
 
 
+
+#' Parameters derived from Flandern population
+#' @name belgium.ref
+#' @docType data
+#' @usage belgium.ref
+#' @source Roelants M, Hauspie R, Hoppenbrouwers K. References for growth and pubertal development from birth to 21 years in Flanders, Belgium. Annals of Human Biology. 2009 Dezember;36(6):680–94.
+NULL
+
+
