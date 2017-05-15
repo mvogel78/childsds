@@ -23,34 +23,49 @@
 ##'    ggplot2::geom_line() +
 ##'    ggplot2::facet_wrap(~ sex, nrow = 2)
 ##' @export
-make_percentile_tab <- function(ref, item, perc = c(2.5,5,50,95,97.5), stack = F, sex, age){
+make_percentile_tab <- function (ref, item, perc = c(2.5, 5, 50, 95, 97.5), stack = F,
+                                 age = NULL, sex ) {
     reftabs <- ref@refs[[item]]@params
-    nam <- paste(sprintf("perc_%02d",floor(perc)),
-                 gsub("0.","", perc-floor(perc)), sep = "_")
+    if(is.null(age)) age <- ref@refs[[item]]@params[[1]]$age
+    res <- list()
+    for(df in reftabs){
+        df2 <- as.data.frame(lapply(df[,-which(names(df)=="age")], 
+                                    function(col){
+                                        approx(x = df$age, y =  col, xout = age, rule = 2)$y 
+                                    }))
+        df2$age <- age
+        df2 <- dplyr::select(df2, age, dplyr::everything())
+        res[[length(res)+1]] <- df2
+    }
+    names(res) <- names(reftabs)
+    reftabs <- res 
+    nam <- paste(sprintf("perc_%02d", floor(perc)),
+                 gsub("0.", "", perc - floor(perc)), sep = "_")
     dists <- unlist(ref@refs[[item]]@dist)
     perc <- perc/100
     sexes <- c(male = "male", female = "female")
-    pertab <- lapply(sexes, function(sex){
-        perc.values <- lapply(perc, function(p){
-            eval(parse(text = paste0("gamlss.dist::q",dists[sex],"(",p,",",
-                                     paste(
-                                         paste0(names(reftabs[[sex]])[-1],
-                                                "=reftabs[[\"",sex,"\"]]$",
-                                                names(reftabs[[sex]])[-1] ),
-                                         collapse = ","),
-                                     ")")))})
+    pertab <- lapply(sexes, function(sex) {
+        perc.values <- lapply(perc, function(p) {
+            eval(parse(text = paste0("gamlss.dist::q", dists[sex], 
+                                     "(", p, ",", paste(paste0(names(reftabs[[sex]])[-1], 
+                                                               "=reftabs[[\"", sex, "\"]]$", names(reftabs[[sex]])[-1]), 
+                                                        collapse = ","), ")")))
+        })
         names(perc.values) <- nam
         perc.values$age <- reftabs[[sex]]$age
         perc.values$sex <- sex
-        as.data.frame(perc.values, stringsAsFactors = F)
-    } 
-    )
+        perc.values <- as.data.frame(perc.values, stringsAsFactors = F)
+        perc.values <- dplyr::bind_cols(perc.values, reftabs[[sex]][-1])
+        perc.values
+    })
     res <- Reduce(rbind, pertab)
-    if( requireNamespace("reshape2") & stack)
-        return(reshape2::melt(res, id.vars = c("age","sex")))
-    if( !requireNamespace("reshape2") & stack)
+    if (requireNamespace("reshape2") & stack){
+        res <- dplyr::select(res, -dplyr::matches("^mu|^nu|^sigma|^tau"))
+        return(reshape2::melt(res, id.vars = c("age", "sex")))
+    } 
+        
+    if (!requireNamespace("reshape2") & stack) 
         print("For stacking the package reshape2 is required")
     return(dplyr::select(res, sex, age, dplyr::everything()))
-    }
-
+}
 
