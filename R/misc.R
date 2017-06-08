@@ -31,7 +31,7 @@ make_percentile_tab <- function (ref, item, perc = c(2.5, 5, 50, 95, 97.5), stac
     for(df in reftabs){
         df2 <- as.data.frame(lapply(df[,-which(names(df)=="age")], 
                                     function(col){
-                                        approx(x = df$age, y =  col, xout = age, rule = 2)$y 
+                                        stats::approx(x = df$age, y =  col, xout = age, rule = 2)$y 
                                     }))
         df2$age <- age
         df2 <- dplyr::select(df2, age, dplyr::everything())

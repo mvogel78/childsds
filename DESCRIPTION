@@ -10,7 +10,7 @@ Description: Calculation of standard deviation scores adduced from different
     new version, there are also functions combining the gamlss lms() function with
     resampling methods for using with repeated measurements and family dependencies.
 Depends:
-    R (>= 3.2.3)
+    R (>= 3.4.0)
 Imports:
     gamlss,
     gamlss.dist,
@@ -18,7 +18,8 @@ Imports:
     magrittr,
     methods,
     tidyr,
-    boot
+    boot,
+    class
 Suggests:
     reshape2,
     ggplot2
