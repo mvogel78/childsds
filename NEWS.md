@@ -2,6 +2,7 @@
 ## Major changes
 * add sds_2d for calculation of bloodpressure sds
 * add kiggs bloodpressure references
+* add additional new references (Belgium)
 
 ## Bug fixes
 * Remove direct calls to dplyr::n()
