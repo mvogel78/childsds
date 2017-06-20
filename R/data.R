@@ -8,8 +8,8 @@
 NULL
 
 #' LMS Parameters for German reference data (KiGGS, 2003-2006)
-#' for height, weight, bmi, hip, whr, bodyfat, skinfold sum, triceps
-#' skinfold, and waist circumference
+#' for height, weight, bmi, hip, whr, bodyfat, skinfold sum, triceps, 
+#' skinfold, subscapular skinfold, and waist circumference
 #' @name kiggs.ref 
 #' @docType data
 #' @usage kiggs.ref
