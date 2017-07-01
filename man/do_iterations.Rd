@@ -6,8 +6,8 @@
 \usage{
 do_iterations(data.list, n = 10, max.it = 1000, prop.fam = 0.75,
   prop.subject = 1, age.min = 0, age.max = 18, age.int = 1/12,
-  dist = "BCCGo", mu.df = 4, sigma.df = 3, nu.df = 2, tau.df = 2,
-  verbose = F)
+  keep.models = F, dist = "BCCGo", mu.df = 4, sigma.df = 3, nu.df = 2,
+  tau.df = 2, verbose = F)
 }
 \arguments{
 \item{data.list}{list of dataframes as returned by prepare_data}
@@ -25,6 +25,8 @@ do_iterations(data.list, n = 10, max.it = 1000, prop.fam = 0.75,
 \item{age.max}{upper bound of age}
 
 \item{age.int}{stepwidth of the age variable}
+
+\item{keep.models}{indicator whether or not models in each iteration should be kept}
 
 \item{dist}{distribution used for the fitting process, has to be one of BCCGo, BCPEo, BCTo as they are accepted by lms()}
 

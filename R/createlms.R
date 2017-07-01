@@ -123,6 +123,7 @@ fit_gamlss <- function(data, age.min = 0.25, age.max = 18, age.int = 1/12, keep.
                                         newdata = data.frame(age = age)))
         lms$age <- age
         lms %<>% dplyr::select(age, dplyr::everything())
+        if(!keep.models) mm <- NULL
         return(list(lms = lms, model = mm))
     }
     invisible(return(NULL))
@@ -169,15 +170,16 @@ one_iteration <- function(data.list, prop.fam = 0.75, prop.subject = 1, age.min 
 ##' @return list of lists for models and fitted parameters
 ##' @author Mandy Vogel
 ##' @export
-do_iterations <- function(data.list, n = 10, max.it = 1000, prop.fam = 0.75, prop.subject = 1, age.min = 0, age.max = 18, age.int = 1/12,
+do_iterations <- function(data.list, n = 10, max.it = 1000, prop.fam = 0.75, prop.subject = 1,
+                          age.min = 0, age.max = 18, age.int = 1/12,keep.models = F,
                           dist = "BCCGo", mu.df = 4, sigma.df = 3, nu.df = 2, tau.df = 2, verbose = F){
     range.age <- range(unlist(lapply(data.list, function(df) df$age)))
-    if(age.min < (range.age[1] - 0.005*range.age[1])) {
-        age.min <- range.age[1]
-        print(paste("requested age.min is smaller than max age in the data. set age.min to min(age):", round(age.min,2)))}
-    if(age.max > (range.age[2] + 0.005*range.age[2])){
-        age.max <- range.age[2]
-        print(paste("requested age.max is greater than age range in data. set age.max to max(age):", round(age.max,2)))
+    if(age.min < (range.age[1] - 0.01*range.age[1])) {
+        age.min <- find.nearest.month(range.age[1])
+        print(paste("requested age.min is smaller than max age in the data. set age.min to min(age):", round(find.nearest.month(range.age[1]),2)))}
+    if(age.max > (range.age[2] + 0.01*range.age[2])){
+        age.max <- find.nearest.month(range.age[2])
+        print(paste("requested age.max is greater than age range in data. set age.max to max(age):", round(find.nearest.month(range.age[2]),2)))
     } 
     if(sum(is.na(data.list[[1]]$group)) > 0) print("no grouping variable is given. Therefore, no grouping will be done.")
     sexes <- names(data.list)
@@ -188,6 +190,7 @@ do_iterations <- function(data.list, n = 10, max.it = 1000, prop.fam = 0.75, pro
     while(i <= max.it & min(counter[1,]) < n ){
         tmp.res <- one_iteration(data.list = data.list,
                                  dist = dist,
+                                 keep.models = keep.models,
                                  mu.df = mu.df,
                                  sigma.df = sigma.df,
                                  nu.df = nu.df,
@@ -196,7 +199,7 @@ do_iterations <- function(data.list, n = 10, max.it = 1000, prop.fam = 0.75, pro
                                  age.min = age.min,
                                  age.max = age.max,
                                  verbose = verbose)
-        fit_succ <- as.data.frame(lapply(tmp.res, function(x) !is.null(x)))
+        fit_succ <- as.data.frame(lapply(tmp.res, function(x) as.numeric(!is.null(x))))
         counter <- as.data.frame(t(colSums(dplyr::bind_rows(counter,fit_succ))))
         print(fit_succ)
         print(counter)         
@@ -211,11 +214,15 @@ do_iterations <- function(data.list, n = 10, max.it = 1000, prop.fam = 0.75, pro
     names(lms) <- sexes
     print(paste("fitted out of", n, "iterations:"))
     print(sapply(lms, length))
-    models <- lapply(sexes, function(sex) {
-        models <- lapply(res, function(x) x[[sex]]$model)
-        lapply(models, function(ls) ls[sapply(ls, function(x) !is.null(x))])
-    })
-    names(models) <- sexes
+    if( keep.models ){
+        models <- lapply(sexes, function(sex) {
+            models <- lapply(res, function(x) x[[sex]]$model)
+            lapply(models, function(ls) ls[sapply(ls, function(x) !is.null(x))])
+        })
+        names(models) <- sexes
+    } else {
+        models <- NULL
+    }
     attr(lms, "distribution") <- dist
     list(lms = lms, models = models)
 
