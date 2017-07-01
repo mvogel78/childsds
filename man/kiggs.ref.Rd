@@ -4,8 +4,8 @@
 \name{kiggs.ref}
 \alias{kiggs.ref}
 \title{LMS Parameters for German reference data (KiGGS, 2003-2006)
-for height, weight, bmi, hip, whr, bodyfat, skinfold sum, triceps
-skinfold, and waist circumference}
+for height, weight, bmi, hip, whr, bodyfat, skinfold sum, triceps, 
+skinfold, subscapular skinfold, and waist circumference}
 \source{
 Referenzperzentile fuer anthropometrische Masszahlen und Blutdruck aus KiGGS 2003-2006, Robert Koch Institut, Germany
 }
@@ -14,6 +14,6 @@ kiggs.ref
 }
 \description{
 LMS Parameters for German reference data (KiGGS, 2003-2006)
-for height, weight, bmi, hip, whr, bodyfat, skinfold sum, triceps
-skinfold, and waist circumference
+for height, weight, bmi, hip, whr, bodyfat, skinfold sum, triceps, 
+skinfold, subscapular skinfold, and waist circumference
 }
