@@ -7,7 +7,7 @@ Description: Calculation of standard deviation scores adduced from different
     for different measures like BMI, weight, height, head circumference, different
     ratios, etc. are easy to carry out. Also, references for laboratory values in
     children are available: serum lipids, iron-related blood parameters. In the
-    new version, there are also functions combining the gamlss lms() function with
+    new version, there are also functions combining the lms() function from package 'gamlss' with
     resampling methods for using with repeated measurements and family dependencies.
 Depends:
     R (>= 3.4.0)
