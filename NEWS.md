@@ -1,3 +1,12 @@
+# childsds 0.6.3
+## Major changes
+* add option whether or not models should be kept during the iteration process
+## Minor changes
+* add subscapular skinfold to kiggs.ref
+* add function to find better upper and lower age bounds (full month)
+## Bug fixes
+*  remove user accessable documentation of unexported functions
+
 # childsds 0.6.2
 ## Major changes
 * add sds_2d for calculation of bloodpressure sds
