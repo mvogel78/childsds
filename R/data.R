@@ -8,7 +8,7 @@
 NULL
 
 #' LMS Parameters for German reference data (KiGGS, 2003-2006)
-#' for height, weight, bmi, hip, whr, bodyfat, skinfold sum, triceps, 
+#' for height, weight, bmi, hip, whr, whtr, bodyfat, skinfold sum, triceps, 
 #' skinfold, subscapular skinfold, and waist circumference
 #' @name kiggs.ref 
 #' @docType data
@@ -88,7 +88,8 @@ NULL
 #' @name saudi.ref
 #' @docType data
 #' @usage saudi.ref
-#' @source Mouzan, M. I. E., Salloum, A. A. A., Alqurashi, M. M., Herbish, A. S. A. & Omar, A. A. The LMS and Z scale growth reference for Saudi school-age children and adolescents. Saudi Journal of Gastroenterology 22, 331 (2016)
+#' @source
+#' Mouzan, M. I. E., Salloum, A. A. A., Alqurashi, M. M., Herbish, A. S. A. & Omar, A. A. The LMS and Z scale growth reference for Saudi school-age children and adolescents. Saudi Journal of Gastroenterology 22, 331 (2016)
 NULL
 
 
@@ -104,7 +105,7 @@ NULL
 #' @name portug.ref
 #' @docType data
 #' @usage portug.ref
-#' @source Chaves, R., Baxter-Jones, A., Souza, M., Santos, D. & Maia, J. Height, weight, body composition, and waist circumference references for 7-to 17-year-old children from rural Portugal. HOMO-Journal of Comparative Human Biology 66, 264--277 (2015)start123.
+#' @source Chaves, R., Baxter-Jones, A., Souza, M., Santos, D. & Maia, J. Height, weight, body composition, and waist circumference references for 7-to 17-year-old children from rural Portugal. HOMO-Journal of Comparative Human Biology 66, 264--277 (2015).
 NULL
 
 
