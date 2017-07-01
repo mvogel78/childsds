@@ -299,3 +299,18 @@ calc_confints <- function(lms.list, perc = c(2.5,5,50,95,97.5), level = 0.95, ty
 }
 
  
+
+## find nearest month
+##
+## in the iteration process I assume age given in years
+## and try to set the min and max age to full month 
+## @param x - original age
+## @return numeric - the nearest full month
+## @author mandy
+find.nearest.month <- function(x){
+    full <- x %/% 1
+    rem <- x %% 1
+    ind <- which.min(abs(rem-0:11/12))
+    rem <- (0:11/12)[ind]
+    full + rem
+}
