@@ -8,8 +8,9 @@
 ##' @param perc vector of percentiles to be calculated
 ##' @param stack wether or not the data should be stacked, stacked data
 ##' would most possibly be used in ggplot2
-##' @param sex name of the sex variable (character) if different from sex, ignored
-##' @param age name of the age variable (character) if different from age, ignored
+##' @param age desired values of age 
+##' @param sex name of the sex variable (character) if different from sex, not
+##' functional in this version and therefore ignored
 ##' @return data frame either with the different percentiles as columns
 ##' or, if stacked, as data frame with four columns: age, sex, variable, value
 ##' @author Mandy Vogel
