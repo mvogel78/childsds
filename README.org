@@ -2,7 +2,8 @@
 ** Installation 
    - version 0.6.3 from cran via ~install.packages()~ or the respective menu
 ** Basic use
-#+BEGIN_SRC R :session :exports both :results output :cache yes
+*** Transformation into sds
+#+BEGIN_SRC R :session :exports both :results output
   library(childsds)
   ## generate example data
   x <- data.frame(height=c(50,100,60,54),
@@ -21,6 +22,54 @@
 : 2    100   f 2.9  1.54150151
 : 3     60   f 0.6 -3.26293906
 : 4     54   m 0.2 -2.82189275
+
+*** make_percentile_tab()
+#+BEGIN_SRC R :session :exports both :results output
+  library(childsds)
+  head(tab <- make_percentile_tab(ref = nl4.ref,
+				  item = "heightM",
+				  perc = c(5,50,95),
+				  age = 1:3))
+#+END_SRC
+
+#+RESULTS:
+:      sex age perc_05_0 perc_50_0 perc_95_0 nu       mu      sigma
+: 1   male   1  72.82291  77.15261  81.48232  1 77.15261 0.03411775
+: 2   male   2  82.10371  87.67000  93.23629  1 87.67000 0.03860000
+: 3   male   3  89.97701  96.28000 102.58299  1 96.28000 0.03980000
+: 4 female   1  70.58366  74.89305  79.20245  1 74.89305 0.03498225
+: 5 female   2  82.06492  86.76000  91.45508  1 86.76000 0.03290000
+: 6 female   3  89.41744  94.83000 100.24256  1 94.83000 0.03470000
+
+#+BEGIN_SRC R :session :exports both :results output
+  library(childsds)
+  head(tab <- make_percentile_tab(ref = nl4.ref,
+				  item = "heightM",
+				  perc = c(5,50,95),
+				  age = seq(0,20,by=0.1),
+				  stack = T))
+#+END_SRC
+
+#+RESULTS:
+:   age  sex  variable    value
+: 1 0.0 male perc_05_0 47.82905
+: 2 0.1 male perc_05_0 51.65139
+: 3 0.2 male perc_05_0 55.37913
+: 4 0.3 male perc_05_0 58.68443
+: 5 0.4 male perc_05_0 61.60275
+: 6 0.5 male perc_05_0 64.21947
+
+#+BEGIN_SRC R :session :exports both :results output graphics :file fig_1.png :height 400 :width 600
+  library(ggplot2)
+  ggplot(tab, aes( x = age, y = value, group=paste(sex, variable))) +
+      geom_line(aes(linetype = sex)) +
+      theme_classic() +
+      theme(legend.position = c(0.1,0.8))
+#+END_SRC
+
+#+RESULTS[9e68fab1cedee6b9007e7fe1696cac77f23d3ef4]:
+[[file:fig_1.png]]
+
 
 ** List of available references/LMS charts
 *** Belgium
