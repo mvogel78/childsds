@@ -24,6 +24,7 @@
 : 4     54   m 0.2 -2.82189275
 
 *** make_percentile_tab()
+**** create a percentile table
 #+BEGIN_SRC R :session :exports both :results output
   library(childsds)
   head(tab <- make_percentile_tab(ref = nl4.ref,
@@ -41,6 +42,7 @@
 : 5 female   2  82.06492  86.76000  91.45508  1 86.76000 0.03290000
 : 6 female   3  89.41744  94.83000 100.24256  1 94.83000 0.03470000
 
+**** use the ~stack~ argument to create a dataframe in the long format for use in ggplot 
 #+BEGIN_SRC R :session :exports both :results output
   library(childsds)
   head(tab <- make_percentile_tab(ref = nl4.ref,
