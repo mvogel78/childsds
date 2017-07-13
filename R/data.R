@@ -8,7 +8,7 @@
 NULL
 
 #' LMS Parameters for German reference data (KiGGS, 2003-2006)
-#' for height, weight, bmi, hip, whr, whtr, bodyfat, skinfold sum, triceps, 
+#' for height, weight, bmi, hip, whr, whtr, bodyfat, skinfold sum, triceps
 #' skinfold, subscapular skinfold, and waist circumference
 #' @name kiggs.ref 
 #' @docType data
@@ -150,13 +150,19 @@ NULL
 #' @source Neuhauser, H. K., Thamm, M., Ellert, U., Hense, H. W. & Rosario, A. S. Blood Pressure Percentiles by Age and Height from Nonoverweight Children and Adolescents in Germany. Pediatrics peds.2010-1290 (2011). doi:10.1542/peds.2010-1290.
 NULL
 
-
-
 #' Parameters derived from Flandern population
 #' @name belgium.ref
 #' @docType data
 #' @usage belgium.ref
 #' @source Roelants M, Hauspie R, Hoppenbrouwers K. References for growth and pubertal development from birth to 21 years in Flanders, Belgium. Annals of Human Biology. 2009 Dezember;36(6):680–94.
+NULL
+
+
+#' Parameters of skinfold measures derived from Colombian population 
+#' @name colombia_sf.ref
+#' @docType data
+#' @usage colombia_sf.ref
+#' @source Ramírez-Vélez, R. et al. Triceps and Subscapular Skinfold Thickness Percentiles and Cut-Offs for Overweight and Obesity in a Population-Based Sample of Schoolchildren and Adolescents in Bogota, Colombia. Nutrients 8, (2016).
 NULL
 
 

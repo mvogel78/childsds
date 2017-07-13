@@ -17,9 +17,10 @@ make_percentile_tab(ref, item, perc = c(2.5, 5, 50, 95, 97.5), stack = F,
 \item{stack}{wether or not the data should be stacked, stacked data
 would most possibly be used in ggplot2}
 
-\item{age}{name of the age variable (character) if different from age, ignored}
+\item{age}{desired values of age}
 
-\item{sex}{name of the sex variable (character) if different from sex, ignored}
+\item{sex}{name of the sex variable (character) if different from sex, not
+functional in this version and therefore ignored}
 }
 \value{
 data frame either with the different percentiles as columns

@@ -5,7 +5,7 @@
 \alias{portug.ref}
 \title{Parameters derived from Portuguese children}
 \source{
-Chaves, R., Baxter-Jones, A., Souza, M., Santos, D. & Maia, J. Height, weight, body composition, and waist circumference references for 7-to 17-year-old children from rural Portugal. HOMO-Journal of Comparative Human Biology 66, 264--277 (2015)start123.
+Chaves, R., Baxter-Jones, A., Souza, M., Santos, D. & Maia, J. Height, weight, body composition, and waist circumference references for 7-to 17-year-old children from rural Portugal. HOMO-Journal of Comparative Human Biology 66, 264--277 (2015).
 }
 \usage{
 portug.ref
