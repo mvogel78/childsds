@@ -1,3 +1,8 @@
+# childsds 0.6.4
+## Major changes
+* add colombian skinfold references
+## Bug fixes
+*  fix typos in italian references
 # childsds 0.6.3
 ## Major changes
 * add option whether or not models should be kept during the iteration process
