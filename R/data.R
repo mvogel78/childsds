@@ -166,3 +166,11 @@ NULL
 NULL
 
 
+#' Parameters of skinfold measures derived from Colombian population 
+#' @name who2007.ref
+#' @docType data
+#' @usage who2007.ref
+#' @source Onis, M. de, Onyango, A.W., Borghi, E., Siyam, A., Nishida, C., Siekmann, J., 2007. Development of a WHO growth reference for school-aged children and adolescents. Bulletin of the World health Organization 85, 660–667.
+NULL
+
+

@@ -19,6 +19,10 @@
 ##'                             item = "height",
 ##'                            perc = c(2.5,10,50,90,97.5),
 ##'                            stack = TRUE)
+##'
+##' ggplot2::ggplot(ptab, ggplot2::aes(x = age, y = value, colour = variable)) +
+##'    ggplot2::geom_line() +
+##'    ggplot2::facet_wrap(~ sex, nrow = 2)
 ##' @export
 make_percentile_tab <- function (ref, item, perc = c(2.5, 5, 50, 95, 97.5), stack = F,
                                  age = NULL, sex ) {
