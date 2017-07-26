@@ -1,6 +1,6 @@
 * childsds
 ** Installation 
-   - version 0.6.3 from cran via ~install.packages()~ or the respective menu
+   - version 0.6.4 from cran via ~install.packages()~ or the respective menu
 ** Basic use
 *** Transformation into sds
 #+BEGIN_SRC R :session :exports both :results output

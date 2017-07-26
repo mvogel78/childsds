@@ -1,3 +1,8 @@
+# childsds 0.6.5
+## Major changes
+* add who 2007 references
+## Bug fixes
+* removes class labelled from who references 
 # childsds 0.6.4
 ## Major changes
 * add colombian skinfold references
