@@ -174,3 +174,13 @@ NULL
 NULL
 
 
+#' Parameters of skinfold measures derived from Colombian population 
+#' @name nl3.ref
+#' @docType data
+#' @usage nl3.ref
+#' @source Fredriks, A. M. et al. Continuing positive secular growth change in The Netherlands 1955–1997. Pediatric research 47, 316–323 (2000).
+#' @source Fredriks, A.M., van Buuren, S., Wit, J.M., Verloove-Vanhorick, S.P., 2000. Body index measurements in 1996–7 compared with 1980. Archives of disease in childhood 82, 107–112.
+#' @source https://cran.r-project.org/package=AGD
+NULL
+
+

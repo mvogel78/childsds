@@ -1,6 +1,7 @@
 # childsds 0.6.5
 ## Major changes
-* add who 2007 references
+* add who 2007 reference tables
+* add nl3 reference tables
 ## Bug fixes
 * removes class labelled from who references 
 # childsds 0.6.4
