@@ -184,3 +184,11 @@ NULL
 NULL
 
 
+#' Parameters of serum insulin-like growth factor-I (IGF-I) 
+#' @name japan_lab.ref
+#' @docType data
+#' @usage japn_lab.ref
+#' @source Isojima, T., Shimatsu, A., Yokoya, S., Chihara, K., Tanaka, T., Hizuka, N., Teramoto, A., Tatsumi, K., Tachibana, K., Katsumata, N., Horikawa, R., 2012. Standardized centile curves and reference intervals of serum insulin-like growth factor-I (IGF-I) levels in a normal Japanese population using the LMS method. Endocrine Journal 59, 771–780. doi:10.1507/endocrj.EJ12-0110
+NULL
+
+
