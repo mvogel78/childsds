@@ -195,7 +195,7 @@ NULL
 #' International Laboratory Parameters Tables
 #' @name international_lab.ref
 #' @docType data
-#' @usage japn_lab.ref
+#' @usage international_lab.ref
 #' @source Bidlingmaier, M., Friedrich, N., Emeny, R.T., Spranger, J., Wolthers, O.D., Roswall, J., Körner, A., Obermayer-Pietsch, B., Hübener, C., Dahlgren, J., others, 2014. Reference intervals for insulin-like growth factor-1 (IGF-I) from birth to senescence: results from a multicenter study using a new automated chemiluminescence IGF-I immunoassay conforming to recent international recommendations. The Journal of Clinical Endocrinology & Metabolism 99, 1712–1721.
 NULL
 
