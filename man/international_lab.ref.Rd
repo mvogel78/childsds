@@ -6,9 +6,11 @@
 \title{International Laboratory Parameters Tables}
 \source{
 Bidlingmaier, M., Friedrich, N., Emeny, R.T., Spranger, J., Wolthers, O.D., Roswall, J., Körner, A., Obermayer-Pietsch, B., Hübener, C., Dahlgren, J., others, 2014. Reference intervals for insulin-like growth factor-1 (IGF-I) from birth to senescence: results from a multicenter study using a new automated chemiluminescence IGF-I immunoassay conforming to recent international recommendations. The Journal of Clinical Endocrinology & Metabolism 99, 1712–1721.
+
+Friedrich, N., Wolthers, O.D., Arafat, A.M., Emeny, R.T., Spranger, J., Roswall, J., Kratzsch, J., Grabe, H.J., Hübener, C., Pfeiffer, A.F.H., Döring, A., Bielohuby, M., Dahlgren, J., Frystyk, J., Wallaschofski, H., Bidlingmaier, M., 2014. Age- and Sex-Specific Reference Intervals Across Life Span for Insulin-Like Growth Factor Binding Protein 3 (IGFBP-3) and the IGF-I to IGFBP-3 Ratio Measured by New Automated Chemiluminescence Assays. The Journal of Clinical Endocrinology & Metabolism 99, 1675–1686. doi:10.1210/jc.2013-3060
 }
 \usage{
-japn_lab.ref
+international_lab.ref
 }
 \description{
 International Laboratory Parameters Tables
