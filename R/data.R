@@ -187,8 +187,23 @@ NULL
 #' Parameters of serum insulin-like growth factor-I (IGF-I) 
 #' @name japan_lab.ref
 #' @docType data
-#' @usage japn_lab.ref
+#' @usage japan_lab.ref
 #' @source Isojima, T., Shimatsu, A., Yokoya, S., Chihara, K., Tanaka, T., Hizuka, N., Teramoto, A., Tatsumi, K., Tachibana, K., Katsumata, N., Horikawa, R., 2012. Standardized centile curves and reference intervals of serum insulin-like growth factor-I (IGF-I) levels in a normal Japanese population using the LMS method. Endocrine Journal 59, 771–780. doi:10.1507/endocrj.EJ12-0110
 NULL
 
+
+#' International Laboratory Parameters Tables
+#' @name international_lab.ref
+#' @docType data
+#' @usage japn_lab.ref
+#' @source Bidlingmaier, M., Friedrich, N., Emeny, R.T., Spranger, J., Wolthers, O.D., Roswall, J., Körner, A., Obermayer-Pietsch, B., Hübener, C., Dahlgren, J., others, 2014. Reference intervals for insulin-like growth factor-1 (IGF-I) from birth to senescence: results from a multicenter study using a new automated chemiluminescence IGF-I immunoassay conforming to recent international recommendations. The Journal of Clinical Endocrinology & Metabolism 99, 1712–1721.
+NULL
+
+
+#' Parameters Preterm and  Intrauterine
+#' @name preterm.ref
+#' @docType data
+#' @usage preterm.ref
+#' @source Olsen, I.E., Lawson, M.L., Ferguson, A.N., Cantrell, R., Grabich, S.C., Zemel, B.S., Clark, R.H., 2015. BMI Curves for Preterm Infants. PEDIATRICS 135, e572–e581. doi:10.1542/peds.2014-2777
+NULL
 
