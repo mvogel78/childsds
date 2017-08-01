@@ -2,6 +2,9 @@
 ## Major changes
 * add who 2007 reference tables
 * add nl3 reference tables
+* add preterm reference tables
+* add turkish reference tables height, weight
+* add igf international and japan
 ## Bug fixes
 * removes class labelled from who references 
 # childsds 0.6.4

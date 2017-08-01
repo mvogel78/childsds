@@ -65,6 +65,8 @@ NULL
 #' @docType data
 #' @usage turkish.ref
 #' @source Hatipoglu, N. et al. Waist circumference percentiles for 7- to 17-year-old Turkish children and adolescents. Eur J Pediatr 167, 383--389 (2008);Bundak, R. et al. Body mass index references for Turkish children. Acta Pædiatrica 95, 194--198 (2006).
+#' @source Neyzi, O., Furman, A., Bundak, R., Gunoz, H., Darendeliler, F., Bas, F., 2006. Growth references for Turkish children aged 6 to 18 years. Acta Pædiatrica 95, 1635–1641. doi:10.1080/08035250600652013
+#' @source Bundak, R. et al. Body mass index references for Turkish children. Acta Paediatrica 95, 194-198 (2006).
 NULL
 
 
@@ -206,5 +208,6 @@ NULL
 #' @docType data
 #' @usage preterm.ref
 #' @source Olsen, I.E., Lawson, M.L., Ferguson, A.N., Cantrell, R., Grabich, S.C., Zemel, B.S., Clark, R.H., 2015. BMI Curves for Preterm Infants. PEDIATRICS 135, e572–e581. doi:10.1542/peds.2014-2777
+#' @source Olsen, I.E., Groveman, S.A., Lawson, M.L., Clark, R.H., Zemel, B.S., 2010. New intrauterine growth curves based on United States data. Pediatrics 125, e214-224. doi:10.1542/peds.2009-0913
 NULL
 

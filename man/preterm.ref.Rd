@@ -6,6 +6,8 @@
 \title{Parameters Preterm and  Intrauterine}
 \source{
 Olsen, I.E., Lawson, M.L., Ferguson, A.N., Cantrell, R., Grabich, S.C., Zemel, B.S., Clark, R.H., 2015. BMI Curves for Preterm Infants. PEDIATRICS 135, e572–e581. doi:10.1542/peds.2014-2777
+
+Olsen, I.E., Groveman, S.A., Lawson, M.L., Clark, R.H., Zemel, B.S., 2010. New intrauterine growth curves based on United States data. Pediatrics 125, e214-224. doi:10.1542/peds.2009-0913
 }
 \usage{
 preterm.ref
