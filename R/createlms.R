@@ -20,7 +20,6 @@
 ##' @importFrom dplyr n
 ##' @export
 prepare_data <- function(data, group = NULL, subject = "SIC", sex = NULL, value = "value", age = "age", lb = -Inf, ub = Inf){
-    n1 <- nrow(data)
     if(is.null(group)){
         data$group <- NA
         group <- "group"
@@ -310,7 +309,7 @@ calc_confints <- function(lms.list, perc = c(2.5,5,50,95,97.5), level = 0.95, ty
 find.nearest.month <- function(x){
     full <- x %/% 1
     rem <- x %% 1
-    ind <- which.min(abs(rem-0:11/12))
+    ind <- which.min(abs(rem - 0:11/12))
     rem <- (0:11/12)[ind]
     full + rem
 }

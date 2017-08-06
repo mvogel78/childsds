@@ -6,6 +6,8 @@
 \title{Parameters derived from Saudi children}
 \source{
 Mouzan, M. I. E., Salloum, A. A. A., Alqurashi, M. M., Herbish, A. S. A. & Omar, A. A. The LMS and Z scale growth reference for Saudi school-age children and adolescents. Saudi Journal of Gastroenterology 22, 331 (2016)
+
+Shaik, S.A., El Mouzan, M.I., AlSalloum, A.A., AlHerbish, A.S., 2016. Growth reference for Saudi preschool children: LMS parameters and percentiles. Ann Saudi Med 36, 2–6. doi:10.5144/0256-4947.2016.2
 }
 \usage{
 saudi.ref
