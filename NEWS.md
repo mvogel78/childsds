@@ -7,7 +7,8 @@
 * add igf international and japan
 * add saudi arabian preschool references
 ## Bug fixes
-* removes class labelled from who references 
+* removes class labelled from who references
+* add missing argument to one_it inside do_iterations
 # childsds 0.6.4
 ## Major changes
 * add colombian skinfold references
