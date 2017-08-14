@@ -195,6 +195,7 @@ do_iterations <- function(data.list, n = 10, max.it = 1000, prop.fam = 0.75, pro
                                  nu.df = nu.df,
                                  tau.df = tau.df,
                                  prop.fam = prop.fam,
+                                 prop.subject = prop.subject,
                                  age.min = age.min,
                                  age.max = age.max,
                                  verbose = verbose)
