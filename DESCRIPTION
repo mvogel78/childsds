@@ -1,6 +1,6 @@
 Package: childsds
 Title: Data and Methods Around Reference Values in Pediatrics
-Version: 0.6.5
+Version: 0.6.6
 Authors@R: person("Mandy", "Vogel", email = "mandy.vogel@googlemail.com", role = c("aut", "cre"))
 Description: Calculation of standard deviation scores adduced from different
     growth standards (WHO, UK, Germany, Italy, China, etc). Therefore, the calculation of SDS-values
@@ -20,9 +20,11 @@ Imports:
     methods,
     tidyr,
     boot,
-    class
-Suggests:
+    class,
+    tibble,
     reshape2,
+    purrr
+Suggests:
     ggplot2
 URL: https://github.com/mvogel78/childsds/wiki
 BugReports: https://github.com/mvogel78/childsds/issues

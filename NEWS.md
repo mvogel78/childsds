@@ -1,3 +1,6 @@
+# childsds 0.6.6
+## Major changes
+* add ggplot version of the worm plot function 
 # childsds 0.6.5
 ## Major changes
 * add who 2007 reference tables
