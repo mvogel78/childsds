@@ -23,7 +23,8 @@ Imports:
     class,
     tibble,
     reshape2,
-    purrr
+    purrr,
+    utils
 Suggests:
     ggplot2
 URL: https://github.com/mvogel78/childsds/wiki
