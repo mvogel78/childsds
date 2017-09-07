@@ -6,7 +6,8 @@
 \usage{
 one_iteration(data.list, prop.fam = 0.75, prop.subject = 1, age.min = 0,
   age.max = 18, age.int = 1/12, keep.models = F, dist = "BCCGo",
-  sigma.df = 3, nu.df = 2, mu.df = 4, tau.df = 2, verbose = F)
+  sigma.df = 3, nu.df = 2, mu.df = 4, tau.df = 2, verbose = F,
+  trans.x = F, lim.trans = c(0, 1.5))
 }
 \arguments{
 \item{data.list}{list of dataframes as returned by prepare_data}
@@ -34,6 +35,10 @@ one_iteration(data.list, prop.fam = 0.75, prop.subject = 1, age.min = 0,
 \item{tau.df}{degree of freedem kurtosis parameter}
 
 \item{verbose}{whether or not information about sampling will be printed during while iterate}
+
+\item{trans.x}{indicator wether age should be transformed or not}
+
+\item{lim.trans}{limits for the exponent of transformation of age}
 }
 \value{
 list of lists each containing a dataframe of the fitted lms parameter at the given age points and the fitted model
