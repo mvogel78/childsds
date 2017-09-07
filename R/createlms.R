@@ -108,8 +108,8 @@ select_meas <- function(data, subject = "subject", prop = 1, verbose = F){
 ##' @return list containing a dataframe of the fitted lms parameter at the given age points and the fitted model
 ##' @author Mandy Vogel
 fit_gamlss <- function(data, age.min = 0.25, age.max = 18, age.int = 1/12, keep.models = F,
-                       dist = "BCCGo", mu.df = 4,sigma.df = 3, nu.df = 2, tau.df = 2, trans.x = F, lim.trans = c(0,1.5),
-                       value){
+                       dist = "BCCGo", mu.df = 4,sigma.df = 3, nu.df = 2, tau.df = 2,
+                       trans.x = F, lim.trans = c(0,1.5), value){
     tr.obj <- try(mm <- gamlss::lms(value, age, data = data[,-grep("group",names(data))],
                             families = dist,method.pb = "ML", k = 2,trace = F,
                             mu.df = mu.df, sigma.df = sigma.df,
@@ -276,7 +276,7 @@ aggregate_lms <- function(lms.list){
 ##' @author mandy
 ##' @export
 calc_confints <- function(lms.list, perc = c(2.5,5,50,95,97.5), level = 0.95, type = c("point")){
-    dist <- "BCPE"
+    dist <- attributes(res$lms)$distribution
     nam <- paste(sprintf("perc_%02d",floor(perc)),
                  gsub("0.","", perc-floor(perc)), sep = "_") 
     perc <- perc/100
