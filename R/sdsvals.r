@@ -11,7 +11,7 @@
 ##' @param ref RefGroup object
 ##' @param type "SDS" or "perc"
 ##' @param male coding of sex for male
-##' @param female coding of sex for male
+##' @param female coding of sex for female
 ##' @return vector containing SDS or percentile values
 ##' @examples
 ##' anthro <- data.frame(age = c(11.61,12.49,9.5,10.42,8.42,10.75,9.57,10.48),
