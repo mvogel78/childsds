@@ -1,6 +1,9 @@
 # childsds 0.6.6
 ## Major changes
-* add ggplot version of the worm plot function 
+* add ggplot version of the worm plot function
+## Minor changes
+* add include.pars to make_percentile_tab
+* add transformation argument to lms() wrapper
 # childsds 0.6.5
 ## Major changes
 * add who 2007 reference tables
