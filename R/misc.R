@@ -9,6 +9,8 @@
 ##' @param stack wether or not the data should be stacked, stacked data
 ##' would most possibly be used in ggplot2
 ##' @param age desired values of age 
+##' @param include.pars indicator whether or not parameters should be included
+##' @param digits specification of number of decimal places
 ##' @param sex name of the sex variable (character) if different from sex, not
 ##' functional in this version and therefore ignored
 ##' @return data frame either with the different percentiles as columns
@@ -25,7 +27,8 @@
 ##'    ggplot2::facet_wrap(~ sex, nrow = 2)
 ##' @export
 make_percentile_tab <- function (ref, item, perc = c(2.5, 5, 50, 95, 97.5), stack = F,
-                                 age = NULL, sex ) {
+                                 age = NULL, include.pars = T, digits = 4, sex ) {
+    if(stack) include.pars <- F 
     reftabs <- ref@refs[[item]]@params
     if(is.null(age)) age <- ref@refs[[item]]@params[[1]]$age
     res <- list()
@@ -47,21 +50,21 @@ make_percentile_tab <- function (ref, item, perc = c(2.5, 5, 50, 95, 97.5), stac
     sexes <- c(male = "male", female = "female")
     pertab <- lapply(sexes, function(sex) {
         perc.values <- lapply(perc, function(p) {
-            eval(parse(text = paste0("gamlss.dist::q", dists[sex], 
+            round(eval(parse(text = paste0("gamlss.dist::q", dists[sex], 
                                      "(", p, ",", paste(paste0(names(reftabs[[sex]])[-1], 
                                                                "=reftabs[[\"", sex, "\"]]$", names(reftabs[[sex]])[-1]), 
-                                                        collapse = ","), ")")))
+                                                        collapse = ","), ")"))),digits)
         })
         names(perc.values) <- nam
         perc.values$age <- reftabs[[sex]]$age
         perc.values$sex <- sex
         perc.values <- as.data.frame(perc.values, stringsAsFactors = F)
-        perc.values <- dplyr::bind_cols(perc.values, reftabs[[sex]][-1])
+        if(include.pars)
+            perc.values <- dplyr::bind_cols(perc.values, round(reftabs[[sex]][-1], digits))
         perc.values
     })
     res <- Reduce(rbind, pertab)
     if (requireNamespace("reshape2") & stack){
-        res <- dplyr::select(res, -dplyr::matches("^mu|^nu|^sigma|^tau"))
         return(reshape2::melt(res, id.vars = c("age", "sex")))
     } 
         
