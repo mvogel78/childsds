@@ -5,7 +5,7 @@
 \title{calculate raw values}
 \usage{
 make_percentile_tab(ref, item, perc = c(2.5, 5, 50, 95, 97.5), stack = F,
-  age = NULL, sex)
+  age = NULL, include.pars = T, digits = 4, sex)
 }
 \arguments{
 \item{ref}{Refgroup object}
@@ -18,6 +18,10 @@ make_percentile_tab(ref, item, perc = c(2.5, 5, 50, 95, 97.5), stack = F,
 would most possibly be used in ggplot2}
 
 \item{age}{desired values of age}
+
+\item{include.pars}{indicator whether or not parameters should be included}
+
+\item{digits}{specification of number of decimal places}
 
 \item{sex}{name of the sex variable (character) if different from sex, not
 functional in this version and therefore ignored}

@@ -22,7 +22,7 @@ sds(value, age, sex, item, ref, type = "SDS", male = "male",
 
 \item{male}{coding of sex for male}
 
-\item{female}{coding of sex for male}
+\item{female}{coding of sex for female}
 }
 \value{
 vector containing SDS or percentile values
