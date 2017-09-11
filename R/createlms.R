@@ -276,7 +276,7 @@ aggregate_lms <- function(lms.list){
 ##' @author mandy
 ##' @export
 calc_confints <- function(lms.list, perc = c(2.5,5,50,95,97.5), level = 0.95, type = c("point")){
-    dist <- attributes(res$lms)$distribution
+    dist <- attributes(lms.list)$distribution
     nam <- paste(sprintf("perc_%02d",floor(perc)),
                  gsub("0.","", perc-floor(perc)), sep = "_") 
     perc <- perc/100
