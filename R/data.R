@@ -211,3 +211,19 @@ NULL
 #' @source Olsen, I.E., Groveman, S.A., Lawson, M.L., Clark, R.H., Zemel, B.S., 2010. New intrauterine growth curves based on United States data. Pediatrics 125, e214-224. doi:10.1542/peds.2009-0913
 NULL
 
+
+#' Parameters for serum liver enzymes
+#' @name life_liver.ref
+#' @docType data
+#' @usage life_liver.ref
+#' @source Bussler et al, New pediatric percentiles of liver enzyme serum levels (ALT, AST, GGT): effects of age, sex, BMI and pubertal stage, Hepatology 2017
+NULL
+
+
+#' Parameters from the 1990 UK growth study
+#' @name uk1990.ref
+#' @docType data
+#' @usage uk1990.ref
+#' @source Cole, T.J., Freeman, J.V., Preece, M.A., 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in medicine 17, 407–429.
+#' @source Cole, T.J., Freeman, J.V., Preece, M.A., 1995. Body mass index reference curves for the UK, 1990. Archives of disease in childhood 73, 25–29.
+NULL
