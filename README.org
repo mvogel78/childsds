@@ -1,4 +1,4 @@
-* I moved the repository to Bitbucket
+* I moved the repository to Bitbucket for personal reasons.
 * childsds
 ** List of available references/LMS charts
   - you find a list of available reference tables by region and by item [[https://github.com/mvogel78/childsds/wiki][here]].
